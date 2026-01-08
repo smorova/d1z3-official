@@ -13,12 +13,14 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D1Z3 - VAZGEÇ | Official Site</title>
+    <title>D1Z3 - İLAÇ | Official Site</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/images/profile_pic.jpg">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Roboto+Mono:wght@300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&family=Roboto+Mono:wght@300;400&display=swap"
         rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -26,10 +28,9 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Meta Tags for SEO & Social -->
-    <meta name="description"
-        content="D1Z3 - VAZGEÇ. İstanbul'un gölgelerinde yeni bir hikaye başlıyor. Digital Ghost. Neon Soul.">
-    <meta property="og:title" content="D1Z3 - VAZGEÇ">
-    <meta property="og:description" content="2 Ocak'ta Yayında. Pre-Save Now.">
+    <meta name="description" content="D1Z3 - İLAÇ. Analog Ruh, Dijital Beden. Klinik Neon fazı başladı.">
+    <meta property="og:title" content="D1Z3 - İLAÇ">
+    <meta property="og:description" content="Yeni Single İLAÇ // 23 Ocak 2026. Vazgeç Yayında.">
     <meta property="og:type" content="music.musician">
 </head>
 
@@ -49,18 +50,44 @@
         <!-- Menu Removed as requested -->
     </nav>
 
-    <!-- Hero Section (Video BG) -->
+    <!-- Hero Section (Image BG) -->
     <section id="hero">
-        <video autoplay muted loop playsinline id="hero-video">
-            <source src="assets/video/hero_loop.mp4" type="video/mp4">
-        </video>
+        <div class="hero-bg-img"></div>
         <div class="overlay"></div>
-        <div class="hero-content">
-            <!-- Using Logo Image instead of Text -->
-            <img src="assets/images/logo.png" alt="D1Z3" class="hero-logo-img"
-                style="max-width: 80%; filter: drop-shadow(0 0 10px var(--neon-orange));">
-            <p class="release-date">İlk Single Vazgeç</p>
-            <a href="https://distrokid.com/hyperfollow/d1z3/vazge" target="_blank" class="neon-btn">HEMEN DİNLE</a>
+        <div class="hero-content centered">
+            <div class="status-terminal">[STATUS: HYBRID_ARCHITECTURE_V2.1 // HEALING_PROCESS_ACTIVE]</div>
+            <h1 class="klinik-title">İLAÇ</h1>
+            <div id="countdown" class="countdown-container">
+                <div class="countdown-item"><span id="days">00</span><label>GÜN</label></div>
+                <div class="countdown-item"><span id="hours">00</span><label>SAAT</label></div>
+                <div class="countdown-item"><span id="minutes">00</span><label>DAKİKA</label></div>
+                <div class="countdown-item"><span id="seconds">00</span><label>SANİYE</label></div>
+            </div>
+            <p class="release-date">23 OCAK 2026</p>
+            <div class="btn-group">
+                <a href="https://distrokid.com/hyperfollow/d1z3/ila" target="_blank" class="neon-btn clinical">SAVE THE
+                    DATE</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vazgeç Section (The Richness) -->
+    <section id="vazgec">
+        <div class="vazgec-container">
+            <div class="vazgec-image">
+                <img src="assets/images/D1Z3_Cover.png" alt="Vazgeç Cover">
+            </div>
+            <div class="vazgec-content">
+                <div class="vazgec-header">
+                    <span class="vazgec-label">TÜM PLATFORMLARDA!</span>
+                    <h2 class="vazgec-title">VAZGEÇ</h2>
+                </div>
+                <div class="vazgec-details">
+                    <p>Analog Ruh, Dijital Beden.</p>
+                    <p>D1Z3'ün ilk haykırışı.</p>
+                </div>
+                <a href="https://distrokid.com/hyperfollow/d1z3/vazge" target="_blank" class="neon-btn">HEMEN DİNLE</a>
+            </div>
         </div>
     </section>
 
@@ -69,9 +96,12 @@
         <div class="container">
             <h2 class="section-title">NEDEN?</h2>
             <div class="manifesto-text">
-                <p class="highlight" style="font-size: 2rem;">"Analog Ruh, Dijital Beden."</p>
-                <p>D1Z3, şehrin gürültüsünde kaybolmuş gerçekliklerin sesi.</p>
-                <p>O yıllardır susanların sesi olmak için var.</p>
+                <p class="highlight" style="font-size: 2rem;">"Analog ruh, Dijital beden"</p>
+                <div class="manifesto-content">
+                    <p>D1Z3: Okunuş "Dizi".</p>
+                    <p>Kusursuzluğu öğütleyen dünya düzenine inat, yıllardır söylenmeyi bekleyen kusurlu duyguların
+                        haykırışı!</p>
+                </div>
             </div>
         </div>
     </section>
@@ -92,22 +122,19 @@
                 <div class="bio-content">
                     <p>D1Z3; kusursuzluğu öğütleyen dünya düzenine bir başkaldırı olarak doğan bir ses; yıllardır
                         söylenmeyi bekleyen sözlerin, yarım kalmış hayallerin haykırışıdır.</p>
-                    <p>Kusursuz ama ruhsuz bir ses değil; insan olmanın getirdiği hataları, nefesleri ve teknolojik
-                        "glitch"leri kucaklayan bir AI-İnsan Hibrit karakterdir. Şehrin gürültüsünde kaybolmuş
-                        gerçekliklerin, senin en karanlık gecende kulaklığına fısıldayan o yabancının sesi.</p>
-                    <p>İsmindeki şiirsel "Dize" ve yazılımdaki soğuk "Dizi" (String) ikiliğinden beslenen bu proje,
-                        teknolojik yalnızlığı ve şehir melankolisini işleyen görsel-işitsel bir deneyimdir. Pahalı
-                        stüdyoların sahte parıltısından uzakta; RVC teknolojisinin, kodların, kısıtlı ekipmanların ve
-                        saf duyguların özenle işlenmesiyle inşa edilen bu dünya; bir algoritmanın soğukluğunu değil,
+                    <p>Kusursuz değil belki ama ruhsuz bir ses de değil; insan olmanın getirdiği hataları, nefesleri ve
+                        teknolojik "glitch"leri kucaklayan bir AI-İnsan Hibrit karakter. İsmindeki şiirsel "Dize" ve
+                        yazılımdaki soğuk "Dizi" (String) ikiliğinden beslenen bu proje, teknolojik yalnızlığı ve şehir
+                        melankolisini işleyen görsel-işitsel bir deneyimdir.</p>
+                    <p>Pahalı stüdyoların sahte parıltısından uzakta; RVC teknolojisinin, kodların, kısıtlı ekipmanların
+                        ve saf duyguların özenle işlenmesiyle inşa edilen bu dünya; bir algoritmanın soğukluğunu değil,
                         insan ruhunun karmaşık sıcaklığını taşır.</p>
-                    <p>Burada anlatanın yüzü ya da kimliği değil, anlattığı o derin duygular ve senin içinde dokunduğu
-                        yer esastır.</p>
-                    <p>İlk single "Vazgeç", gitmekle kalmak arasındaki o ince çizgide yürüyenlerin, kalabalıklar içinde
-                        yalnız hissedenlerin marşıdır. Bu bir simülasyon değil; bu, senin de içinde yürüdüğün o puslu
-                        hayat yolculuğunun bir yansıması.</p>
-                    <p class="final-line">Bu bir simülasyon değil. Sadece benim de değil, hepimizin hikayesi.</p>
-                    <p>Ve bu sadece bir başlangıç. Duyulmayı bekleyen daha çok hikaye, iyileşmeyi bekleyen daha derin
-                        yaralar var. Takipte kal.</p>
+                    <p>İlk single "Vazgeç" ile başlayan bu yolculuk, yeni durak "İlaç" ile derinleşiyor. "İlaç"; aşkın
+                        yaralı ruhlardaki iyileştiren etkisi ve sevileni kendini yok edecek kadar önde tutmanın, onu
+                        kendinden bile sakınmanın derin ikilemlerini anlatan melankolik bir tasvirdir.</p>
+                    <p>Bu iki single sadece bir başlangıç; duyulmayı bekleyen daha çok hikaye, iyileşmeyi bekleyen daha
+                        derin yaralar var.</p>
+                    <p class="final-line">"İlaç" // 23 Ocak 2026</p>
                     <p>İstanbul, 2026.</p>
                 </div>
             </div>

@@ -2,52 +2,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- Preloader Logic ---
     const loader = document.getElementById('loader');
-
-    // Simulate loading time (or wait for window load)
-    setTimeout(() => {
-        loader.style.opacity = '0';
+    if (loader) {
         setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
-    }, 2000); // 2 seconds fake load
-
-    // --- Glitch Effect Trigger ---
-    // Randomly trigger strong glitch animation on the main title
-    const mainTitle = document.querySelector('.main-title');
-
-    setInterval(() => {
-        if (Math.random() > 0.9) { // 10% chance every check
-            mainTitle.style.textShadow = '2px 0 red, -2px 0 blue';
+            loader.style.opacity = '0';
             setTimeout(() => {
-                mainTitle.style.textShadow = '0 0 20px var(--neon-orange)';
-            }, 100);
+                loader.style.display = 'none';
+            }, 500);
+        }, 1500);
+    }
+
+    // --- Countdown Logic ---
+    const targetDate = new Date("January 23, 2026 00:00:00").getTime();
+
+    const updateCountdown = () => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            document.getElementById("countdown").innerHTML = "OUT NOW";
+            return;
         }
-    }, 500);
 
-    // --- Smooth Scroll Highlight ---
-    // Highlight nav links based on scroll position
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                current = section.getAttribute('id');
+        document.getElementById("days").innerText = days.toString().padStart(2, '0');
+        document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+        document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+        document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+    };
+
+    if (document.getElementById("countdown")) {
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    }
+
+    // --- Reveal on Scroll ---
+    const revealElements = document.querySelectorAll('section, .vazgec-container, .split-layout');
+    revealElements.forEach(el => el.classList.add('reveal'));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
             }
         });
+    }, { threshold: 0.1 });
 
-        navLinks.forEach(a => {
-            a.classList.remove('active');
-            if (a.getAttribute('href').includes(current)) {
-                a.style.color = 'var(--neon-blue)';
-            } else {
-                a.style.color = '#fff';
-            }
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // --- Subtle Mouse Parallax for Hero ---
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        window.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
-    });
+    }
 
     console.log("D1Z3 System Online. Signal Established.");
 });
