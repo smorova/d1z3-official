@@ -8,114 +8,196 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-GM8BH1QETJ');
     </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D1Z3 Resmi Web Sitesi</title>
+
+    <!-- Dynamic Title -->
+    <title>D1Z3 - İLAÇ</title>
+
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="assets/images/profile_pic.jpg">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&family=Roboto+Mono:wght@300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap"
         rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Meta Tags for SEO & Social -->
     <meta name="description"
-        content="Yeni Single &quot;İLAÇ&quot; // 23 Ocak 2026'da Yayında! İlk Single &quot;Vazgeç&quot; Hemen Dinle!">
-    <meta property="og:title" content="D1Z3 Resmi Web Sitesi">
+        content="D1Z3 - İLAÇ | 23 Ocak 2026 | Zaman hemhal olmuş, ilaçta zehir de sensin. | THE DARK PHARMACY">
+    <meta property="og:title" content="D1Z3 - İLAÇ | THE DARK PHARMACY">
     <meta property="og:description"
-        content="Yeni Single &quot;İLAÇ&quot; // 23 Ocak 2026'da Yayında! İlk Single &quot;Vazgeç&quot; Hemen Dinle!">
+        content="Yeni Single İLAÇ // 23 Ocak 2026'da Yayında! Reçetesiz satılır. Yan etki: Kalp kırılması.">
     <meta property="og:type" content="music.musician">
+    <meta property="og:image" content="assets/images/D1Z3_Ilac.png">
+    <meta name="theme-color" content="#00F3FF">
 </head>
 
 <body>
 
-    <!-- Loading Screen -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         ENTRY MODAL - "UYARI"
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="entry-modal">
+        <div class="modal-content">
+            <div class="modal-warning">⚠️ UYARI</div>
+            <p class="modal-text">
+                Bu platform yüksek dozda melankoli ve stroboskopik ışık içerir.<br><br>
+                <strong>Yan etkiler kalıcı olabilir.</strong>
+            </p>
+            <button id="enter-btn" class="modal-enter-btn">KABUL ET VE GİR 💊</button>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         BSOD - BLUE SCREEN OF DEATH
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="bsod-screen">
+        <div class="bsod-sad">:(</div>
+        <div class="bsod-title">EMOTIONAL_OVERFLOW_EXCEPTION</div>
+        <div class="bsod-code">Sistem kritik bir hata ile karşılaştı.</div>
+        <div class="bsod-code">Hata kodu: 0x1LAC_ZEHR_DE_SENS1N</div>
+        <div class="bsod-lyric">"Zaman hemhal olmuş, ilaçta zehir de sensin."</div>
+        <div class="bsod-progress">Bellek dökümü alınıyor... <span id="bsod-percent">0</span>%</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         LOADER
+         ═══════════════════════════════════════════════════════════════ -->
     <div id="loader">
-        <div class="glitch-text" data-text="D1Z3">D1Z3</div>
+        <div class="loader-terminal"></div>
         <div class="loading-bar"></div>
     </div>
 
-    <!-- Navigation (Simplified, No Menu) -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         NAVIGATION
+         ═══════════════════════════════════════════════════════════════ -->
     <nav>
         <div class="logo">
             <img src="assets/images/logo.png" alt="D1Z3 Logo" style="height: 40px;">
         </div>
-        <!-- Menu Removed as requested -->
     </nav>
 
-    <!-- Hero Section (Image BG) -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         HERO SECTION - İLAÇ LANSMAN
+         Background: Cinematic Video
+         ═══════════════════════════════════════════════════════════════ -->
     <section id="hero">
-        <div class="hero-bg-img"></div>
+        <!-- Video Background -->
+        <div class="hero-bg-video">
+            <video autoplay muted loop playsinline>
+                <source src="assets/video/hero_cinematic.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Overlays -->
+        <div class="noise-overlay"></div>
+        <div class="vignette-overlay"></div>
         <div class="overlay"></div>
+
+        <!-- Hero Content -->
         <div class="hero-content centered">
-            <div class="status-terminal">[STATUS: HYBRID_ARCHITECTURE_V2.1 // HEALING_PROCESS_ACTIVE]</div>
-            <h1 class="klinik-title">İLAÇ</h1>
-            <div id="countdown" class="countdown-container">
-                <div class="countdown-item"><span id="days">00</span><label>GÜN</label></div>
-                <div class="countdown-item"><span id="hours">00</span><label>SAAT</label></div>
-                <div class="countdown-item"><span id="minutes">00</span><label>DAKİKA</label></div>
-                <div class="countdown-item"><span id="seconds">00</span><label>SANİYE</label></div>
+            <!-- Terminal Status -->
+            <div class="status-terminal">
+                [STATUS: RELEASED // SYSTEM_OVERRIDE_COMPLETE]
             </div>
-            <p class="release-date">23 OCAK 2026</p>
-            <div class="btn-group">
-                <a href="https://distrokid.com/hyperfollow/d1z3/ila" target="_blank" class="neon-btn clinical">SAVE THE
-                    DATE</a>
+
+            <!-- Title -->
+            <h1 class="klinik-title"
+                style="font-size: 10rem; line-height: 0.8; margin-bottom: 20px; text-shadow: 0 0 60px var(--clinical-cyan); letter-spacing: 10px;">
+                İLAÇ
+            </h1>
+            <h3
+                style="font-family: var(--font-mono); font-size: clamp(0.8rem, 2vw, 1.2rem); letter-spacing: 4px; color: var(--clinical-cyan); margin-bottom: 20px; text-transform: uppercase;">
+                ŞİMDİ TÜM PLATFORMLARDA YAYINDA!
+            </h3>
+
+            <!-- DOZ AL Button -->
+            <div class="btn-group" style="margin-top: 50px;">
+                <a href="https://distrokid.com/hyperfollow/d1z3/ila" target="_blank" class="doz-btn">
+                    💊 HEMEN DİNLE
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Vazgeç Section (The Richness) -->
-    <section id="vazgec">
-        <div class="vazgec-container">
-            <div class="vazgec-image">
-                <img src="assets/images/D1Z3_Cover.png" alt="Vazgeç Cover">
-            </div>
-            <div class="vazgec-content">
-                <div class="vazgec-header">
-                    <span class="vazgec-label">TÜM PLATFORMLARDA!</span>
-                    <h2 class="vazgec-title">VAZGEÇ</h2>
-                </div>
-                <div class="vazgec-details">
-                    <p>Analog Ruh, Dijital Beden.</p>
-                    <p>D1Z3'ün ilk haykırışı.</p>
-                </div>
-                <a href="https://distrokid.com/hyperfollow/d1z3/vazge" target="_blank" class="neon-btn">HEMEN DİNLE</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Manifesto Section (The Why) -->
-    <section id="manifesto">
+    <!-- ═══════════════════════════════════════════════════════════════
+         İLAÇ MANİFESTOSU (Text Art)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="manifesto" class="reveal" style="padding-top: 100px; padding-bottom: 200px;">
         <div class="container">
-            <h2 class="section-title">NEDEN?</h2>
             <div class="manifesto-text">
-                <p class="highlight" style="font-size: 2rem;">"Analog ruh, Dijital beden"</p>
-                <div class="manifesto-content">
-                    <p>D1Z3: Okunuş "Dizi".</p>
-                    <p>Kusursuzluğu öğütleyen dünya düzenine inat, yıllardır söylenmeyi bekleyen kusurlu duyguların
-                        haykırışı!</p>
+                <p class="lyric-art">
+                    "ZAMAN HEMHAL OLMUŞ,<br>
+                    <span class="poison">İLAÇTA ZEHİR DE SENSİN."</span>
+                </p>
+
+                <!-- YouTube Embed for V6.0 -->
+                <div class="video-container"
+                    style="margin: 80px auto; max-width: 900px; border: 1px solid var(--clinical-cyan); box-shadow: 0 0 50px rgba(0, 243, 255, 0.1);">
+                    <style>
+                        .video-wrapper {
+                            position: relative;
+                            padding-bottom: 56.25%;
+                            /* 16:9 */
+                            height: 0;
+                            overflow: hidden;
+                        }
+
+                        .video-wrapper iframe {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    </style>
+                    <div class="video-wrapper">
+                        <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/AkONVItzyT8?si=XzWv5yXzWv5yXzWv"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+                            style="position: absolute; top: 0; left: 0;"></iframe>
+                    </div>
+                </div>
+
+                <!-- Restored Text Content -->
+                <div class="manifesto-content"
+                    style="max-width: 800px; margin: 0 auto; text-align: center; margin-top: 60px;">
+                    <p class="highlight"
+                        style="font-size: 1.5rem; line-height: 1.6; margin-bottom: 40px; color: var(--sterile-white);">
+                        "İlaç; aşkın yaralı ruhlardaki iyileştiren etkisi ve sevileni kendini yok edecek kadar önde
+                        tutmanın, onu kendinden bile sakınmanın derin ikilemlerini anlatan melankolik bir tasvir."
+                    </p>
+                    <p style="font-size: 1.2rem; opacity: 0.7;">
+                        "Yağan yağmurlar silsin gözyaşlarımızı. Yitip gitsin anılar, süpürsün düş kırıklıklarını."
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Identity Section (The Who) -->
-    <section id="identity">
+    <!-- ═══════════════════════════════════════════════════════════════
+         D1Z3 KİMDİR?
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="identity" class="reveal">
         <div class="container split-layout">
             <div class="identity-visual">
-                <!-- Using Mirror Scene Video Loop -->
                 <div class="ghost-frame">
-                    <video autoplay muted loop playsinline style="width: 100%; border: 1px solid var(--neon-blue);">
-                        <source src="assets/images/mirror_scene.mp4" type="video/mp4">
+                    <video autoplay muted loop playsinline class="grok-video">
+                        <source src="assets/video/identity_grok.mp4" type="video/mp4">
                     </video>
                 </div>
             </div>
@@ -124,44 +206,124 @@
                 <div class="bio-content">
                     <p>D1Z3; kusursuzluğu öğütleyen dünya düzenine bir başkaldırı olarak doğan bir ses; yıllardır
                         söylenmeyi bekleyen sözlerin, yarım kalmış hayallerin haykırışıdır.</p>
+
                     <p>Kusursuz değil belki ama ruhsuz bir ses de değil; insan olmanın getirdiği hataları, nefesleri ve
                         teknolojik "glitch"leri kucaklayan bir AI-İnsan Hibrit karakter. İsmindeki şiirsel "Dize" ve
                         yazılımdaki soğuk "Dizi" (String) ikiliğinden beslenen bu proje, teknolojik yalnızlığı ve şehir
                         melankolisini işleyen görsel-işitsel bir deneyimdir.</p>
+
                     <p>Pahalı stüdyoların sahte parıltısından uzakta; RVC teknolojisinin, kodların, kısıtlı ekipmanların
                         ve saf duyguların özenle işlenmesiyle inşa edilen bu dünya; bir algoritmanın soğukluğunu değil,
                         insan ruhunun karmaşık sıcaklığını taşır.</p>
+
                     <p>İlk single "Vazgeç" ile başlayan bu yolculuk, yeni durak "İlaç" ile derinleşiyor. "İlaç"; aşkın
                         yaralı ruhlardaki iyileştiren etkisi ve sevileni kendini yok edecek kadar önde tutmanın, onu
                         kendinden bile sakınmanın derin ikilemlerini anlatan melankolik bir tasvirdir.</p>
+
                     <p>Bu iki single sadece bir başlangıç; duyulmayı bekleyen daha çok hikaye, iyileşmeyi bekleyen daha
                         derin yaralar var.</p>
-                    <p class="final-line">"İlaç" // 23 Ocak 2026</p>
-                    <p>İstanbul, 2026.</p>
+
+                    <p class="final-line">İstanbul, 2026.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         DİSKOGRAFİ
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="diskografi" class="reveal">
+        <div class="container">
+            <h2 style="font-family: var(--font-head); font-size: 3rem; text-align: center; margin-bottom: 60px;">
+                DİSKOGRAFİ</h2>
+
+            <div class="diskografi-grid">
+                <!-- İLAÇ -->
+                <div class="diskografi-item">
+                    <div class="diskografi-image">
+                        <img src="assets/images/D1Z3_Ilac.png" alt="İlaç Cover">
+                        <span class="diskografi-badge">YENİ</span>
+                    </div>
+                    <div class="diskografi-info">
+                        <h3>İLAÇ</h3>
+                        <p>23 Ocak 2026</p>
+                        <a href="https://distrokid.com/hyperfollow/d1z3/ila" target="_blank"
+                            class="neon-btn clinical">DİNLE</a>
+                    </div>
+                </div>
+
+                <!-- VAZGEÇ -->
+                <div class="diskografi-item">
+                    <div class="diskografi-image">
+                        <img src="assets/images/D1Z3_Cover.png" alt="Vazgeç Cover">
+                    </div>
+                    <div class="diskografi-info">
+                        <h3>VAZGEÇ</h3>
+                        <p>2 Ocak 2026</p>
+                        <a href="https://distrokid.com/hyperfollow/d1z3/vazge" target="_blank"
+                            class="neon-btn clinical">DİNLE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════════════════════════════ -->
     <footer>
         <div class="social-icons">
-            <a href="https://instagram.com/d1z3official" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://tiktok.com/@d1z3officialmusic" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://twitter.com/d1z3official" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-            <a href="https://youtube.com/@d1z3official" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://open.spotify.com/intl-tr/artist/78tuXjgTJRAI5B8kr1qS0Y?si=ph6iU2EiQ9Ofj9EEYEBUYQ"
-                target="_blank"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://music.apple.com/us/artist/d1z3/1860895483" target="_blank"><i
+            <a href="https://instagram.com/d1z3official" target="_blank" aria-label="Instagram"><i
+                    class="fa-brands fa-instagram"></i></a>
+            <a href="https://tiktok.com/@d1z3officialmusic" target="_blank" aria-label="TikTok"><i
+                    class="fa-brands fa-tiktok"></i></a>
+            <a href="https://twitter.com/d1z3official" target="_blank" aria-label="Twitter"><i
+                    class="fa-brands fa-twitter"></i></a>
+            <a href="https://youtube.com/@d1z3official" target="_blank" aria-label="YouTube"><i
+                    class="fa-brands fa-youtube"></i></a>
+            <a href="https://open.spotify.com/intl-tr/artist/78tuXjgTJRAI5B8kr1qS0Y" target="_blank"
+                aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://music.apple.com/us/artist/d1z3/1860895483" target="_blank" aria-label="Apple Music"><i
                     class="fa-brands fa-apple"></i></a>
-            <a href="https://link.deezer.com/s/323i5ArCSObakg4BL6rnQ" target="_blank"><i
+            <a href="https://link.deezer.com/s/323i5ArCSObakg4BL6rnQ" target="_blank" aria-label="Deezer"><i
                     class="fa-brands fa-deezer"></i></a>
-            <a href="https://www.facebook.com/d1z3official" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.facebook.com/d1z3official" target="_blank" aria-label="Facebook"><i
+                    class="fa-brands fa-facebook"></i></a>
         </div>
         <p>&copy; 2026 D1Z3 Records. All Rights Reserved.</p>
+        <p style="font-size: 0.7rem; opacity: 0.3; margin-top: 10px;">Reçetesiz satılır. Yan etki: Kalp kırılması.</p>
     </footer>
 
+    <!-- Ambient Audio Indicator -->
+    <div class="audio-indicator">AMBIENT</div>
+
+    <!-- JavaScript -->
     <script src="js/main.js"></script>
+
+    <!-- BSOD Progress Animation -->
+    <script>
+        // Animate BSOD progress when visible
+        const bsodScreen = document.getElementById('bsod-screen');
+        const bsodPercent = document.getElementById('bsod-percent');
+
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.target.classList.contains('active')) {
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        progress += Math.random() * 15;
+                        if (progress >= 100) {
+                            progress = 100;
+                            clearInterval(interval);
+                        }
+                        bsodPercent.textContent = Math.floor(progress);
+                    }, 100);
+                }
+            });
+        });
+
+        observer.observe(bsodScreen, { attributes: true, attributeFilter: ['class'] });
+    </script>
 </body>
 
 </html>

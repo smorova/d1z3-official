@@ -1,21 +1,61 @@
-/* Global Reset & Fonts */
-:root {
-    --bg-color: #050505;
-    /* Deep luxury black */
-    --bg-darker: #020202;
-    --bg-blue-tint: #05080a;
-    /* Deep midnight shift */
-    --text-color: #ffffff;
-    --accent-color: #00f3ff;
-    /* Clinical Neon */
-    --accent-dim: rgba(0, 243, 255, 0.3);
-    --secondary-bg: #111111;
-    --font-head: 'Bebas Neue', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --font-mono: 'Roboto Mono', monospace;
-    --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+/* ═══════════════════════════════════════════════════════════════
+   D1Z3 - THE DARK PHARMACY
+   "Bu site steril bir portfolyo değil. Burası tozlu, neon ışıklı, 
+   hafif cızırtılı ve tehlikeli bir arka sokak kliniği."
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────
+   FONTS
+   ─────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap');
+
+/* VCR OSD Mono for BSOD effect */
+@font-face {
+    font-family: 'VCR OSD Mono';
+    src: url('../assets/fonts/VCR_OSD_MONO.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
+/* ───────────────────────────────────────────────────────────────
+   CSS VARIABLES - THE DARK PHARMACY PALETTE
+   ─────────────────────────────────────────────────────────────── */
+:root {
+    /* PRIMARY - Klinik Mavi */
+    --clinical-cyan: #00F3FF;
+    --clinical-glow: rgba(0, 243, 255, 0.2);
+    --clinical-dim: rgba(0, 243, 255, 0.1);
+
+    /* SECONDARY - Zehir Yeşili */
+    --poison-green: #39FF14;
+    --poison-glow: rgba(57, 255, 20, 0.3);
+
+    /* ACCENT - Gece Mavisi */
+    --deep-navy: #000080;
+
+    /* BSOD */
+    --bsod-blue: #0078D7;
+
+    /* NEUTRALS */
+    --void-black: #030303;
+    --bg-darker: #020202;
+    --sterile-white: #f8f8f8;
+    --metal-gray: #1a1a1a;
+
+    /* TYPOGRAPHY */
+    --font-head: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-bsod: 'VCR OSD Mono', 'Lucida Console', monospace;
+
+    /* TRANSITIONS */
+    --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glitch: all 0.1s steps(2);
+}
+
+/* ───────────────────────────────────────────────────────────────
+   GLOBAL RESET
+   ─────────────────────────────────────────────────────────────── */
 * {
     margin: 0;
     padding: 0;
@@ -24,22 +64,95 @@
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--void-black);
+    color: var(--sterile-white);
     font-family: var(--font-body);
     font-size: 18px;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* Loader */
+/* ═══════════════════════════════════════════════════════════════
+   ENTRY MODAL - "UYARI"
+   ═══════════════════════════════════════════════════════════════ */
+#entry-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: var(--void-black);
+    border: 1px solid var(--clinical-cyan);
+    padding: 60px 80px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 0 60px var(--clinical-glow);
+}
+
+.modal-warning {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    color: var(--clinical-cyan);
+    letter-spacing: 6px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px var(--clinical-glow);
+}
+
+.modal-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 40px;
+}
+
+.modal-enter-btn {
+    padding: 18px 50px;
+    border: 1px solid var(--clinical-cyan);
+    background: transparent;
+    color: var(--clinical-cyan);
+    font-family: var(--font-head);
+    font-size: 1rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.modal-enter-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: var(--clinical-cyan);
+    transition: width 0.5s ease;
+    z-index: -1;
+}
+
+.modal-enter-btn:hover {
+    color: var(--void-black);
+    box-shadow: 0 0 30px var(--clinical-glow);
+}
+
+.modal-enter-btn:hover::before {
+    width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOADER
+   ═══════════════════════════════════════════════════════════════ */
 #loader {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
+    inset: 0;
+    background: var(--void-black);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,11 +160,35 @@ body {
     z-index: 9999;
 }
 
+.loader-terminal {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--clinical-cyan);
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.loader-terminal span {
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
 .loading-bar {
     width: 200px;
     height: 2px;
-    background: #222;
-    margin-top: 20px;
+    background: var(--metal-gray);
     position: relative;
     overflow: hidden;
 }
@@ -63,7 +200,7 @@ body {
     left: 0;
     height: 100%;
     width: 50%;
-    background: var(--accent-color);
+    background: var(--clinical-cyan);
     animation: loading 2s infinite ease-in-out;
 }
 
@@ -77,7 +214,101 @@ body {
     }
 }
 
-/* Nav */
+/* ═══════════════════════════════════════════════════════════════
+   BSOD - BLUE SCREEN OF DEATH
+   ═══════════════════════════════════════════════════════════════ */
+#bsod-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bsod-blue);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10%;
+    z-index: 9998;
+    font-family: var(--font-bsod);
+}
+
+#bsod-screen.active {
+    display: flex;
+    animation: bsodGlitch 0.1s infinite;
+}
+
+@keyframes bsodGlitch {
+
+    0%,
+    100% {
+        transform: translate(0);
+    }
+
+    25% {
+        transform: translate(-2px, 1px);
+    }
+
+    50% {
+        transform: translate(2px, -1px);
+    }
+
+    75% {
+        transform: translate(-1px, -1px);
+    }
+}
+
+.bsod-sad {
+    font-size: 8rem;
+    margin-bottom: 40px;
+}
+
+.bsod-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.bsod-code {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.bsod-lyric {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 30px 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.bsod-progress {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Pixel sorting transition */
+.bsod-pixelsort {
+    animation: pixelSort 0.5s ease-out forwards;
+}
+
+@keyframes pixelSort {
+    0% {
+        filter: blur(0);
+        transform: scaleY(1);
+    }
+
+    50% {
+        filter: blur(10px);
+        transform: scaleY(1.02);
+    }
+
+    100% {
+        filter: blur(20px);
+        transform: scaleY(1.5);
+        opacity: 0;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════════════════ */
 nav {
     position: fixed;
     top: 0;
@@ -94,11 +325,13 @@ nav {
     font-family: var(--font-head);
     font-weight: 800;
     font-size: 1.5rem;
-    color: var(--accent-color);
+    color: var(--clinical-cyan);
     letter-spacing: 2px;
 }
 
-/* Hero Section */
+/* ═══════════════════════════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════════════════════════ */
 #hero {
     height: 100vh;
     width: 100%;
@@ -109,29 +342,130 @@ nav {
     overflow: hidden;
 }
 
-.hero-bg-img {
+/* Hero Background Image */
+/* Hero Background Video */
+.hero-bg-video {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.hero-bg-video video {
     width: 100%;
     height: 100%;
-    background: url('../assets/images/ilac_hero_16_9.jpeg') no-repeat center center;
-    background-size: cover;
-    z-index: -2;
-    transform: scale(1.05);
+    object-fit: cover;
+    filter: brightness(0.6) contrast(1.2) grayscale(0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEXT ART & LYRICS
+   ═══════════════════════════════════════════════════════════════ */
+.lyric-art {
+    font-family: var(--font-head);
+    font-size: 5rem;
+    line-height: 0.9;
+    text-align: center;
+    color: var(--sterile-white);
+    letter-spacing: 5px;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.lyric-art .poison {
+    color: var(--poison-green);
+    display: block;
+    margin-top: 10px;
+    text-shadow: 0 0 40px var(--poison-glow);
+    font-size: 5.5rem;
+    animation: textFlicker 4s infinite;
+}
+
+@keyframes textFlicker {
+
+    0%,
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 40px var(--poison-glow);
+    }
+
+    50% {
+        opacity: 0.8;
+        text-shadow: 0 0 20px var(--poison-glow);
+        font-style: italic;
+    }
+
+    52% {
+        opacity: 0.9;
+        transform: skewX(-10deg);
+    }
+
+    54% {
+        opacity: 1;
+        transform: skewX(0);
+    }
+}
+
+.grok-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: screen;
+    filter: contrast(1.2) saturation(1.1);
+}
+
+.hero-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     filter: brightness(0.6);
 }
 
-.overlay {
+/* Scanlines Overlay */
+.hero-video-container::after {
+    content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+    inset: 0;
+    background:
+        /* Scanlines - Eski TV çizgileri */
+        repeating-linear-gradient(to bottom,
+            transparent 0px,
+            transparent 2px,
+            rgba(0, 0, 0, 0.15) 2px,
+            rgba(0, 0, 0, 0.15) 4px);
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+/* Noise Overlay */
+.noise-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('../assets/images/noise.png');
+    opacity: 0.08;
+    pointer-events: none;
     z-index: -1;
 }
 
+/* Vignette */
+.vignette-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center,
+            transparent 40%,
+            rgba(0, 0, 0, 0.7) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Dark overlay */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: -1;
+}
+
+/* Hero Content */
 .hero-content.centered {
     padding: 0 5%;
     z-index: 1;
@@ -143,29 +477,65 @@ nav {
     align-items: center;
 }
 
+/* Terminal Status */
 .status-terminal {
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    color: var(--accent-color);
-    margin-bottom: 60px;
-    letter-spacing: 4px;
-    font-weight: 400;
+    color: var(--clinical-cyan);
+    margin-bottom: 40px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
+.typing-cursor::after {
+    content: '█';
+    animation: blink 0.8s infinite;
+}
+
+/* Klinik Title */
 .klinik-title {
     font-family: var(--font-head);
     font-size: clamp(4rem, 15vw, 12rem);
     font-weight: 800;
-    color: var(--text-color);
+    color: var(--sterile-white);
     line-height: 0.8;
     margin-bottom: 40px;
     text-transform: uppercase;
     letter-spacing: -2px;
+    position: relative;
 }
 
-/* Countdown */
+/* Glitch effect on hover */
+.klinik-title:hover {
+    animation: glitchText 0.3s infinite;
+}
+
+@keyframes glitchText {
+    0% {
+        text-shadow: 2px 0 var(--clinical-cyan), -2px 0 var(--poison-green);
+    }
+
+    25% {
+        text-shadow: -2px 0 var(--clinical-cyan), 2px 0 var(--poison-green);
+    }
+
+    50% {
+        text-shadow: 2px 2px var(--clinical-cyan), -2px -2px var(--poison-green);
+    }
+
+    75% {
+        text-shadow: -2px -2px var(--clinical-cyan), 2px 2px var(--poison-green);
+    }
+
+    100% {
+        text-shadow: 2px 0 var(--clinical-cyan), -2px 0 var(--poison-green);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COUNTDOWN
+   ═══════════════════════════════════════════════════════════════ */
 .countdown-container {
     display: flex;
     gap: 40px;
@@ -182,7 +552,7 @@ nav {
     font-family: var(--font-mono);
     font-size: 2.5rem;
     font-weight: 300;
-    color: #fff;
+    color: var(--sterile-white);
 }
 
 .countdown-item label {
@@ -202,16 +572,88 @@ nav {
     opacity: 0.6;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   DOZ AL BUTTON - Şırınga Animasyonu
+   ═══════════════════════════════════════════════════════════════ */
 .btn-group {
     display: flex;
     gap: 30px;
     justify-content: center;
 }
 
+.doz-btn {
+    padding: 18px 50px;
+    border: 1px solid var(--clinical-cyan);
+    color: var(--clinical-cyan);
+    text-decoration: none;
+    font-family: var(--font-head);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Şırınga dolum animasyonu */
+.doz-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: var(--clinical-cyan);
+    transition: width 0.5s ease;
+    z-index: -1;
+}
+
+.doz-btn:hover {
+    color: var(--void-black);
+    box-shadow: 0 0 30px var(--clinical-glow);
+}
+
+.doz-btn:hover::before {
+    width: 100%;
+}
+
+/* Glitch on active */
+.doz-btn:active {
+    animation: buttonGlitch 0.2s;
+}
+
+@keyframes buttonGlitch {
+
+    0%,
+    100% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-3px, 2px);
+    }
+
+    40% {
+        transform: translate(3px, -2px);
+    }
+
+    60% {
+        transform: translate(-2px, -2px);
+    }
+
+    80% {
+        transform: translate(2px, 2px);
+    }
+}
+
+/* Clinical cyan variant */
 .neon-btn {
     padding: 18px 50px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
+    color: var(--sterile-white);
     text-decoration: none;
     font-family: var(--font-head);
     font-weight: 700;
@@ -231,14 +673,14 @@ nav {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: #fff;
+    background: var(--sterile-white);
     transition: var(--transition-smooth);
     z-index: -1;
 }
 
 .neon-btn:hover {
-    color: #000;
-    border-color: #fff;
+    color: var(--void-black);
+    border-color: var(--sterile-white);
 }
 
 .neon-btn:hover::before {
@@ -246,20 +688,22 @@ nav {
 }
 
 .neon-btn.clinical {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
+    border-color: var(--clinical-cyan);
+    color: var(--clinical-cyan);
 }
 
 .neon-btn.clinical::before {
-    background: var(--accent-color);
+    background: var(--clinical-cyan);
 }
 
 .neon-btn.clinical:hover {
-    color: #000;
-    box-shadow: 0 0 30px var(--accent-dim);
+    color: var(--void-black);
+    box-shadow: 0 0 30px var(--clinical-glow);
 }
 
-/* Vazgeç Section */
+/* ═══════════════════════════════════════════════════════════════
+   VAZGEÇ SECTION
+   ═══════════════════════════════════════════════════════════════ */
 #vazgec {
     padding: 150px 10%;
     background: var(--bg-darker);
@@ -298,7 +742,7 @@ nav {
 .vazgec-label {
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    color: var(--accent-color);
+    color: var(--clinical-cyan);
     letter-spacing: 5px;
     margin-bottom: 10px;
     display: block;
@@ -316,14 +760,16 @@ nav {
     font-size: 1.1rem;
     font-weight: 300;
     opacity: 0.7;
-    border-left: 2px solid var(--accent-color);
+    border-left: 2px solid var(--clinical-cyan);
     padding-left: 20px;
 }
 
-/* Manifesto Section */
+/* ═══════════════════════════════════════════════════════════════
+   MANIFESTO SECTION
+   ═══════════════════════════════════════════════════════════════ */
 #manifesto {
     padding: 200px 10%;
-    background: var(--bg-blue-tint);
+    background: linear-gradient(135deg, var(--void-black) 0%, #05080a 100%);
     text-align: center;
     position: relative;
 }
@@ -352,16 +798,8 @@ nav {
     margin-bottom: 20px;
 }
 
-.manifesto-content p:last-child {
-    margin-bottom: 0;
-}
-
-.manifesto-content p {
-    margin-bottom: 20px;
-}
-
 .highlight {
-    color: var(--accent-color);
+    color: var(--clinical-cyan);
     font-family: var(--font-head);
     font-weight: 800;
     display: block;
@@ -369,10 +807,12 @@ nav {
     letter-spacing: -1px;
 }
 
-/* Identity Section */
+/* ═══════════════════════════════════════════════════════════════
+   IDENTITY SECTION (HASTA DOSYASI)
+   ═══════════════════════════════════════════════════════════════ */
 #identity {
     padding: 150px 10%;
-    background: var(--bg-color);
+    background: var(--void-black);
 }
 
 .split-layout {
@@ -388,6 +828,7 @@ nav {
 .ghost-frame video {
     width: 100%;
     opacity: 0.8;
+    border: 1px solid var(--clinical-cyan);
 }
 
 .identity-bio {
@@ -399,7 +840,7 @@ nav {
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 40px;
-    color: #fff;
+    color: var(--sterile-white);
 }
 
 .bio-content p {
@@ -411,15 +852,101 @@ nav {
 
 .final-line {
     font-weight: 700;
-    color: var(--accent-color) !important;
+    color: var(--clinical-cyan) !important;
     opacity: 1 !important;
 }
 
-/* Footer */
+/* ═══════════════════════════════════════════════════════════════
+   DİSKOGRAFİ SECTION
+   ═══════════════════════════════════════════════════════════════ */
+#diskografi {
+    padding: 150px 10%;
+    background: var(--bg-darker);
+}
+
+.diskografi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.diskografi-item {
+    text-align: center;
+}
+
+.diskografi-image {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.diskografi-image img {
+    width: 100%;
+    max-width: 350px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transition: var(--transition-smooth);
+}
+
+.diskografi-image:hover img {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 243, 255, 0.2);
+}
+
+.diskografi-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--clinical-cyan);
+    color: var(--void-black);
+    padding: 5px 15px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.diskografi-info h3 {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--sterile-white);
+}
+
+.diskografi-info p {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════ */
 footer {
     padding: 100px 10% 50px;
-    background: #000;
+    background: var(--void-black);
     text-align: center;
+    position: relative;
+}
+
+/* 2px Cyan Gradient Line */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--clinical-cyan) 20%,
+            var(--poison-green) 50%,
+            var(--clinical-cyan) 80%,
+            transparent 100%);
 }
 
 .social-icons {
@@ -436,11 +963,47 @@ footer {
 }
 
 .social-icons a:hover {
-    color: var(--accent-color);
+    color: var(--clinical-cyan);
     transform: translateY(-5px);
 }
 
-/* Reveal Animation Class */
+/* ═══════════════════════════════════════════════════════════════
+   AMBIENT AUDIO INDICATOR
+   ═══════════════════════════════════════════════════════════════ */
+.audio-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--clinical-cyan);
+    opacity: 0.5;
+    z-index: 100;
+}
+
+.audio-indicator::before {
+    content: '♥';
+    margin-right: 5px;
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REVEAL ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -452,8 +1015,29 @@ footer {
     transform: translateY(0);
 }
 
-/* Mobile Responsive */
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 992px) {
+
+    /* Thumb Zone - DOZ AL butonu alt kısımda */
+    .hero-content.centered {
+        justify-content: flex-start;
+        padding-top: 20vh;
+    }
+
+    .btn-group {
+        position: fixed;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+    }
+
+    .doz-btn {
+        padding: 20px 60px;
+        font-size: 1rem;
+    }
 
     .vazgec-container,
     .split-layout {
@@ -474,14 +1058,27 @@ footer {
     .countdown-item span {
         font-size: 1.8rem;
     }
+
+    /* Scanlines reduced on mobile */
+    .hero-video-container::after {
+        opacity: 0.05;
+    }
+
+    .noise-overlay {
+        opacity: 0.03;
+    }
+
+    .modal-content {
+        padding: 40px 30px;
+        margin: 20px;
+    }
 }
 
-/* Additional Mobile Optimizations */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
     #hero {
         height: auto;
         min-height: 100vh;
-        padding: 80px 0 40px;
+        padding: 80px 0 120px;
     }
 
     #manifesto {
@@ -499,4 +1096,253 @@ footer {
     .section-title {
         font-size: 4rem;
     }
+
+    .klinik-title {
+        font-size: 4rem;
+    }
+}
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVENESS (V6.0 EMERGENCY FIX)
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    
+    /* GLOBAL */
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 0 5%;
+    }
+
+    /* NAVIGATION */
+    nav {
+        padding: 15px 20px;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    /* HERO SECTION */
+    .hero-content.centered {
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .klinik-title {
+        font-size: 4rem !important; /* Force smaller size on mobile */
+        margin-bottom: 20px;
+        line-height: 0.9;
+    }
+
+    .status-terminal {
+        font-size: 0.5rem;
+        margin-bottom: 20px;
+    }
+
+    .btn-group {
+        width: 100%;
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .doz-btn {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    /* MANIFESTO & TEXT ART */
+    #manifesto {
+        padding: 80px 5% 100px 5%;
+    }
+
+    .lyric-art {
+        font-size: 2.5rem; /* Drastically reduce from 5rem */
+        line-height: 1.1;
+    }
+
+    .lyric-art .poison {
+        font-size: 2.8rem;
+        margin-top: 5px;
+    }
+
+    .video-container {
+        margin: 40px 0;
+    }
+
+    .manifesto-content p.highlight {
+        font-size: 1.1rem !important;
+    }
+
+    /* IDENTITY SECTION */
+    .split-layout {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .identity-visual {
+        min-height: 300px;
+    }
+
+    .identity-bio {
+        padding-left: 0;
+    }
+
+    .bio-content {
+        font-size: 1rem;
+    }
+
+    /* DISKOGRAFI */
+    .diskografi-grid {
+        grid-template-columns: 1fr; /* Stack items vertically */
+        gap: 40px;
+    }
+
+    .diskografi-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .diskografi-image {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto 20px auto;
+    }
+
+    .diskografi-info {
+        padding-left: 0;
+    }
+
+    .diskografi-info h3 {
+        font-size: 2.5rem;
+        justify-content: center;
+    }
+    
+    .neon-btn {
+        width: 100%;
+        display: block;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    /* MODAL */
+    .modal-content {
+        width: 90%;
+        padding: 40px 20px;
+    }
+
+    .modal-warning {
+        font-size: 1.5rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   V6.1 REFINED MOBILE FIXES (OVERRIDE)
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    #hero {
+        height: auto !important; /* Allow scroll if content is tall */
+        min-height: 100vh;
+        padding-top: 140px; /* Space for Navbar */
+        padding-bottom: 80px;
+        align-items: center; /* Keep centered horizontally */
+    }
+
+    .hero-content.centered {
+        padding: 0 5%;
+    }
+
+    .klinik-title {
+        font-size: 3.8rem !important;
+        line-height: 1;
+        margin: 30px 0 50px 0;
+    }
+
+    /* Fix Button Design */
+    .btn-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .doz-btn {
+        width: auto !important;
+        display: inline-block;
+        min-width: 250px; /* Consistent width but not edge-to-edge */
+        padding: 18px 30px;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        background: rgba(0, 0, 0, 0.6); /* Readability against video */
+        backdrop-filter: blur(5px);
+    }
+    
+    /* Ensure no overlap with next section */
+    #hero::after {
+        display: none; /* Remove any absolute overlays that might block scroll */
+    }
+
+    /* Fix Manifesto Spacing */
+    #manifesto {
+        padding-top: 50px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   V7.0 USER FEEDBACK REFINEMENTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 1. Mobile Review: Sticky "Sabit" Button */
+@media (max-width: 768px) {
+    .doz-btn {
+        position: fixed !important;
+        bottom: 30px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 9999 !important;
+        width: 85% !important;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.85) !important;
+        backdrop-filter: blur(12px);
+        border-color: var(--clinical-cyan);
+        box-shadow: 0 10px 40px rgba(0, 243, 255, 0.2);
+    }
+
+    /* Add padding to bottom of hero/body so button doesn't cover content */
+    #hero {
+        padding-bottom: 120px !important;
+    }
+}
+
+/* 2. Readability Improvement for Manifesto Highlight */
+.manifesto-content p.highlight {
+    font-family: var(--font-body) !important;
+    font-weight: 400 !important;
+    line-height: 2 !important; /* "Daha fazla satır" effect via spacing */
+    letter-spacing: 0.5px;
+    text-shadow: none !important; /* Remove heavy glow */
+    color: #e0e0e0 !important; /* Brighter, cleaner white */
+    max-width: 600px; /* Force more lines */
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+/* 3. Identity Visual Aspect Ratio (4:5) */
+.identity-visual .ghost-frame {
+    aspect-ratio: 4/5 !important;
+    height: auto !important;
+    width: 100%;
+    max-width: 400px; /* Control max width */
+    margin: 0 auto;
+}
+
+.identity-visual video {
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
 }
