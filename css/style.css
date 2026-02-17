@@ -1,56 +1,51 @@
 /* ═══════════════════════════════════════════════════════════════
-   D1Z3 - THE DARK PHARMACY
-   "Bu site steril bir portfolyo değil. Burası tozlu, neon ışıklı, 
-   hafif cızırtılı ve tehlikeli bir arka sokak kliniği."
+   D1Z3 — KUM SAATİ — SURREAL ANALOG NOIR V2
+   "Zaman akıp giderken avuçlarımdan sessiz."
    ═══════════════════════════════════════════════════════════════ */
 
 /* ───────────────────────────────────────────────────────────────
-   FONTS
+   FONTS — Cormorant Garamond (Phoenix American alternatifi)
    ─────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap');
-
-/* VCR OSD Mono for BSOD effect */
-@font-face {
-    font-family: 'VCR OSD Mono';
-    src: url('../assets/fonts/VCR_OSD_MONO.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:ital,wght@0,300;0,400;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap');
 
 /* ───────────────────────────────────────────────────────────────
-   CSS VARIABLES - THE DARK PHARMACY PALETTE
+   CSS VARIABLES — KUM SAATİ PALETTE V2 (BRIGHTER)
    ─────────────────────────────────────────────────────────────── */
 :root {
-    /* PRIMARY - Klinik Mavi */
-    --clinical-cyan: #00F3FF;
-    --clinical-glow: rgba(0, 243, 255, 0.2);
-    --clinical-dim: rgba(0, 243, 255, 0.1);
+    /* PRIMARY — Antik Altın */
+    --gold: #C5A059;
+    --gold-bright: #D4AF61;
+    --gold-light: #E8D5A8;
+    --gold-glow: rgba(197, 160, 89, 0.35);
+    --gold-dim: rgba(197, 160, 89, 0.15);
 
-    /* SECONDARY - Zehir Yeşili */
-    --poison-green: #39FF14;
-    --poison-glow: rgba(57, 255, 20, 0.3);
+    /* SECONDARY — Sıcak Tonlar */
+    --sepia: #8B7355;
+    --sepia-light: #B8A088;
+    --warm-cream: #F5EDE0;
+    --warm-sand: #E8DCC8;
+    --parchment: #FAF6EF;
 
-    /* ACCENT - Gece Mavisi */
-    --deep-navy: #000080;
+    /* BACKGROUNDS — Warmer, lighter */
+    --bg-primary: #0A0806;
+    --bg-section-warm: #0F0C08;
+    --bg-section-light: #F8F4EC;
+    --bg-card: #151210;
 
-    /* BSOD */
-    --bsod-blue: #0078D7;
-
-    /* NEUTRALS */
-    --void-black: #030303;
-    --bg-darker: #020202;
-    --sterile-white: #f8f8f8;
-    --metal-gray: #1a1a1a;
+    /* TEXT */
+    --text-light: #F0EBE0;
+    --text-muted: rgba(240, 235, 224, 0.55);
+    --text-dark: #2A2420;
+    --text-dark-muted: rgba(42, 36, 32, 0.6);
 
     /* TYPOGRAPHY */
-    --font-head: 'Bebas Neue', sans-serif;
+    --font-head: 'Cormorant Garamond', serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
-    --font-bsod: 'VCR OSD Mono', 'Lucida Console', monospace;
 
     /* TRANSITIONS */
-    --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-glitch: all 0.1s steps(2);
+    --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -64,245 +59,47 @@
 }
 
 body {
-    background-color: var(--void-black);
-    color: var(--sterile-white);
+    background-color: var(--bg-primary);
+    color: var(--text-light);
     font-family: var(--font-body);
     font-size: 18px;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   ENTRY MODAL - "UYARI"
-   ═══════════════════════════════════════════════════════════════ */
-#entry-modal {
+/* ───────────────────────────────────────────────────────────────
+   FILM GRAIN — CSS-Only Subtle
+   ─────────────────────────────────────────────────────────────── */
+body::after {
+    content: '';
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.95);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    backdrop-filter: blur(10px);
+    z-index: 9990;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url('../assets/images/noise.png');
+    animation: grainShift 0.4s steps(5) infinite;
 }
 
-.modal-content {
-    background: var(--void-black);
-    border: 1px solid var(--clinical-cyan);
-    padding: 60px 80px;
-    text-align: center;
-    max-width: 500px;
-    box-shadow: 0 0 60px var(--clinical-glow);
-}
-
-.modal-warning {
-    font-family: var(--font-head);
-    font-size: 2rem;
-    color: var(--clinical-cyan);
-    letter-spacing: 6px;
-    margin-bottom: 30px;
-    text-shadow: 0 0 20px var(--clinical-glow);
-}
-
-.modal-text {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 40px;
-}
-
-.modal-enter-btn {
-    padding: 18px 50px;
-    border: 1px solid var(--clinical-cyan);
-    background: transparent;
-    color: var(--clinical-cyan);
-    font-family: var(--font-head);
-    font-size: 1rem;
-    letter-spacing: 3px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: var(--transition-smooth);
-}
-
-.modal-enter-btn::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 0;
-    background: var(--clinical-cyan);
-    transition: width 0.5s ease;
-    z-index: -1;
-}
-
-.modal-enter-btn:hover {
-    color: var(--void-black);
-    box-shadow: 0 0 30px var(--clinical-glow);
-}
-
-.modal-enter-btn:hover::before {
-    width: 100%;
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   LOADER
-   ═══════════════════════════════════════════════════════════════ */
-#loader {
-    position: fixed;
-    inset: 0;
-    background: var(--void-black);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.loader-terminal {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--clinical-cyan);
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-}
-
-.loader-terminal span {
-    animation: blink 0.8s infinite;
-}
-
-@keyframes blink {
-
-    0%,
-    50% {
-        opacity: 1;
-    }
-
-    51%,
-    100% {
-        opacity: 0;
-    }
-}
-
-.loading-bar {
-    width: 200px;
-    height: 2px;
-    background: var(--metal-gray);
-    position: relative;
-    overflow: hidden;
-}
-
-.loading-bar::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 50%;
-    background: var(--clinical-cyan);
-    animation: loading 2s infinite ease-in-out;
-}
-
-@keyframes loading {
+@keyframes grainShift {
     0% {
-        left: -50%;
-    }
-
-    100% {
-        left: 100%;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   BSOD - BLUE SCREEN OF DEATH
-   ═══════════════════════════════════════════════════════════════ */
-#bsod-screen {
-    position: fixed;
-    inset: 0;
-    background: var(--bsod-blue);
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 10%;
-    z-index: 9998;
-    font-family: var(--font-bsod);
-}
-
-#bsod-screen.active {
-    display: flex;
-    animation: bsodGlitch 0.1s infinite;
-}
-
-@keyframes bsodGlitch {
-
-    0%,
-    100% {
-        transform: translate(0);
+        transform: translate(0, 0);
     }
 
     25% {
-        transform: translate(-2px, 1px);
+        transform: translate(-3px, 3px);
     }
 
     50% {
-        transform: translate(2px, -1px);
+        transform: translate(3px, -2px);
     }
 
     75% {
-        transform: translate(-1px, -1px);
-    }
-}
-
-.bsod-sad {
-    font-size: 8rem;
-    margin-bottom: 40px;
-}
-
-.bsod-title {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-}
-
-.bsod-code {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.bsod-lyric {
-    font-size: 1.2rem;
-    font-style: italic;
-    margin: 30px 0;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.bsod-progress {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Pixel sorting transition */
-.bsod-pixelsort {
-    animation: pixelSort 0.5s ease-out forwards;
-}
-
-@keyframes pixelSort {
-    0% {
-        filter: blur(0);
-        transform: scaleY(1);
-    }
-
-    50% {
-        filter: blur(10px);
-        transform: scaleY(1.02);
+        transform: translate(-2px, -3px);
     }
 
     100% {
-        filter: blur(20px);
-        transform: scaleY(1.5);
-        opacity: 0;
+        transform: translate(2px, 1px);
     }
 }
 
@@ -317,279 +114,229 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+    background: linear-gradient(to bottom, rgba(10, 8, 6, 0.95), transparent);
     z-index: 1000;
 }
 
 .logo {
     font-family: var(--font-head);
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.5rem;
-    color: var(--clinical-cyan);
-    letter-spacing: 2px;
+    color: var(--gold);
+    letter-spacing: 4px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.45;
+    transition: var(--transition-smooth);
+}
+
+.nav-links a:hover {
+    opacity: 1;
+    color: var(--gold);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO SECTION
+   HERO SECTION — KUM SAATİ
    ═══════════════════════════════════════════════════════════════ */
 #hero {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background: var(--bg-primary);
 }
 
-/* Hero Background Image */
-/* Hero Background Video */
-.hero-bg-video {
+/* Subtle warm radial glow */
+#hero::before {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Sand Particles */
+.sand-particles {
     position: absolute;
     inset: 0;
-    z-index: -2;
+    z-index: 3;
+    pointer-events: none;
     overflow: hidden;
 }
 
-.hero-bg-video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6) contrast(1.2) grayscale(0.2);
+.sand-particle {
+    position: absolute;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0;
+    animation: sandFall linear infinite;
+    box-shadow: 0 0 4px rgba(197, 160, 89, 0.4);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   TEXT ART & LYRICS
-   ═══════════════════════════════════════════════════════════════ */
-.lyric-art {
-    font-family: var(--font-head);
-    font-size: 5rem;
-    line-height: 0.9;
-    text-align: center;
-    color: var(--sterile-white);
-    letter-spacing: 5px;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-}
+@keyframes sandFall {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) translateX(0) rotate(0deg);
+    }
 
-.lyric-art .poison {
-    color: var(--poison-green);
-    display: block;
-    margin-top: 10px;
-    text-shadow: 0 0 40px var(--poison-glow);
-    font-size: 5.5rem;
-    animation: textFlicker 4s infinite;
-}
-
-@keyframes textFlicker {
-
-    0%,
-    100% {
-        opacity: 1;
-        text-shadow: 0 0 40px var(--poison-glow);
+    8% {
+        opacity: 0.7;
     }
 
     50% {
-        opacity: 0.8;
-        text-shadow: 0 0 20px var(--poison-glow);
-        font-style: italic;
+        opacity: 0.5;
     }
 
-    52% {
-        opacity: 0.9;
-        transform: skewX(-10deg);
+    92% {
+        opacity: 0.2;
     }
 
-    54% {
-        opacity: 1;
-        transform: skewX(0);
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) translateX(40px) rotate(360deg);
     }
-}
-
-.grok-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    mix-blend-mode: screen;
-    filter: contrast(1.2) saturation(1.1);
-}
-
-.hero-video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
-}
-
-/* Scanlines Overlay */
-.hero-video-container::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        /* Scanlines - Eski TV çizgileri */
-        repeating-linear-gradient(to bottom,
-            transparent 0px,
-            transparent 2px,
-            rgba(0, 0, 0, 0.15) 2px,
-            rgba(0, 0, 0, 0.15) 4px);
-    pointer-events: none;
-    opacity: 0.15;
-}
-
-/* Noise Overlay */
-.noise-overlay {
-    position: absolute;
-    inset: 0;
-    background: url('../assets/images/noise.png');
-    opacity: 0.08;
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* Vignette */
-.vignette-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center,
-            transparent 40%,
-            rgba(0, 0, 0, 0.7) 100%);
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* Dark overlay */
-.overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
-    z-index: -1;
 }
 
 /* Hero Content */
-.hero-content.centered {
-    padding: 0 5%;
-    z-index: 1;
+.hero-content {
+    z-index: 5;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 100px 5% 60px;
 }
 
-/* Terminal Status */
-.status-terminal {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--clinical-cyan);
-    margin-bottom: 40px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    opacity: 0.9;
-}
-
-.typing-cursor::after {
-    content: '█';
-    animation: blink 0.8s infinite;
-}
-
-/* Klinik Title */
-.klinik-title {
+/* Main Title */
+.hero-title {
     font-family: var(--font-head);
-    font-size: clamp(4rem, 15vw, 12rem);
-    font-weight: 800;
-    color: var(--sterile-white);
-    line-height: 0.8;
-    margin-bottom: 40px;
+    font-size: clamp(4rem, 11vw, 9rem);
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 0.9;
+    margin-bottom: 30px;
     text-transform: uppercase;
-    letter-spacing: -2px;
+    letter-spacing: 15px;
     position: relative;
+    text-shadow: 0 0 80px var(--gold-dim);
 }
 
-/* Glitch effect on hover */
-.klinik-title:hover {
-    animation: glitchText 0.3s infinite;
+.hero-title span {
+    display: block;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 1.1em;
 }
 
-@keyframes glitchText {
+/* Subtle glitch on hover */
+.hero-title:hover {
+    animation: analogGlitch 0.4s steps(2);
+}
+
+@keyframes analogGlitch {
     0% {
-        text-shadow: 2px 0 var(--clinical-cyan), -2px 0 var(--poison-green);
-    }
-
-    25% {
-        text-shadow: -2px 0 var(--clinical-cyan), 2px 0 var(--poison-green);
+        text-shadow: 3px 0 var(--gold), -3px 0 var(--sepia);
     }
 
     50% {
-        text-shadow: 2px 2px var(--clinical-cyan), -2px -2px var(--poison-green);
-    }
-
-    75% {
-        text-shadow: -2px -2px var(--clinical-cyan), 2px 2px var(--poison-green);
+        text-shadow: -2px 2px var(--gold), 2px -2px var(--sepia);
     }
 
     100% {
-        text-shadow: 2px 0 var(--clinical-cyan), -2px 0 var(--poison-green);
+        text-shadow: 0 0 80px var(--gold-dim);
     }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   COUNTDOWN
-   ═══════════════════════════════════════════════════════════════ */
-.countdown-container {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 50px;
-}
-
-.countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.countdown-item span {
-    font-family: var(--font-mono);
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: var(--sterile-white);
-}
-
-.countdown-item label {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    opacity: 0.5;
-    margin-top: 5px;
-    text-transform: uppercase;
-}
-
-.release-date {
+.hero-subtitle {
     font-family: var(--font-body);
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: 8px;
-    margin-bottom: 40px;
-    opacity: 0.6;
+    font-style: italic;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    color: var(--sepia-light);
+    margin-bottom: 50px;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    max-width: 650px;
+    font-weight: 300;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   DOZ AL BUTTON - Şırınga Animasyonu
-   ═══════════════════════════════════════════════════════════════ */
+/* Video Embed in Hero */
+.hero-video-embed {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto 45px;
+    position: relative;
+    border: 1px solid var(--gold-dim);
+    box-shadow: 0 0 60px rgba(197, 160, 89, 0.08), 0 40px 80px rgba(0, 0, 0, 0.5);
+}
+
+.hero-video-embed::before {
+    content: '▶ D1Z3 — KUM SAATİ (Official Video)';
+    position: absolute;
+    top: -28px;
+    left: 0;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    opacity: 0.4;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #080604;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* CTA Button */
 .btn-group {
     display: flex;
     gap: 30px;
     justify-content: center;
+    margin-top: 5px;
 }
 
-.doz-btn {
-    padding: 18px 50px;
-    border: 1px solid var(--clinical-cyan);
-    color: var(--clinical-cyan);
+.cta-btn {
+    padding: 16px 55px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
     text-decoration: none;
     font-family: var(--font-head);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     font-size: 0.9rem;
     transition: var(--transition-smooth);
     background: transparent;
@@ -598,237 +345,144 @@ nav {
     cursor: pointer;
 }
 
-/* Şırınga dolum animasyonu */
-.doz-btn::before {
+.cta-btn::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
     width: 0;
-    background: var(--clinical-cyan);
-    transition: width 0.5s ease;
+    background: var(--gold);
+    transition: width 0.6s ease;
     z-index: -1;
 }
 
-.doz-btn:hover {
-    color: var(--void-black);
-    box-shadow: 0 0 30px var(--clinical-glow);
+.cta-btn:hover {
+    color: var(--bg-primary);
+    box-shadow: 0 0 40px var(--gold-glow);
 }
 
-.doz-btn:hover::before {
+.cta-btn:hover::before {
     width: 100%;
 }
 
-/* Glitch on active */
-.doz-btn:active {
-    animation: buttonGlitch 0.2s;
-}
-
-@keyframes buttonGlitch {
-
-    0%,
-    100% {
-        transform: translate(0);
-    }
-
-    20% {
-        transform: translate(-3px, 2px);
-    }
-
-    40% {
-        transform: translate(3px, -2px);
-    }
-
-    60% {
-        transform: translate(-2px, -2px);
-    }
-
-    80% {
-        transform: translate(2px, 2px);
-    }
-}
-
-/* Clinical cyan variant */
-.neon-btn {
-    padding: 18px 50px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: var(--sterile-white);
-    text-decoration: none;
-    font-family: var(--font-head);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    transition: var(--transition-smooth);
-    background: transparent;
+/* ═══════════════════════════════════════════════════════════════
+   MANIFESTO SECTION — LIGHT BACKGROUND
+   ═══════════════════════════════════════════════════════════════ */
+#manifesto {
+    padding: 160px 10% 140px;
+    background: var(--bg-section-light);
+    text-align: center;
     position: relative;
     overflow: hidden;
 }
 
-.neon-btn::before {
+/* Gold accent line at top */
+#manifesto::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--sterile-white);
-    transition: var(--transition-smooth);
-    z-index: -1;
-}
-
-.neon-btn:hover {
-    color: var(--void-black);
-    border-color: var(--sterile-white);
-}
-
-.neon-btn:hover::before {
     left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 10%, var(--gold) 50%, transparent 90%);
 }
 
-.neon-btn.clinical {
-    border-color: var(--clinical-cyan);
-    color: var(--clinical-cyan);
-}
-
-.neon-btn.clinical::before {
-    background: var(--clinical-cyan);
-}
-
-.neon-btn.clinical:hover {
-    color: var(--void-black);
-    box-shadow: 0 0 30px var(--clinical-glow);
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   VAZGEÇ SECTION
-   ═══════════════════════════════════════════════════════════════ */
-#vazgec {
-    padding: 150px 10%;
-    background: var(--bg-darker);
-    position: relative;
-    overflow: hidden;
-}
-
-.vazgec-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 100px;
-}
-
-.vazgec-image {
-    flex: 1;
-    position: relative;
-}
-
-.vazgec-image img {
-    width: 100%;
-    display: block;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-    transition: var(--transition-smooth);
-}
-
-.vazgec-image:hover img {
-    transform: translateY(-10px) scale(1.02);
-}
-
-.vazgec-content {
-    flex: 1;
-}
-
-.vazgec-label {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--clinical-cyan);
-    letter-spacing: 5px;
-    margin-bottom: 10px;
-    display: block;
-}
-
-.vazgec-title {
-    font-family: var(--font-head);
-    font-size: 5rem;
-    font-weight: 800;
-    margin-bottom: 30px;
-}
-
-.vazgec-details {
-    margin-bottom: 40px;
-    font-size: 1.1rem;
-    font-weight: 300;
-    opacity: 0.7;
-    border-left: 2px solid var(--clinical-cyan);
-    padding-left: 20px;
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   MANIFESTO SECTION
-   ═══════════════════════════════════════════════════════════════ */
-#manifesto {
-    padding: 200px 10%;
-    background: linear-gradient(135deg, var(--void-black) 0%, #05080a 100%);
-    text-align: center;
-    position: relative;
-}
-
-.section-title {
-    font-family: var(--font-head);
-    font-size: 10rem;
-    opacity: 0.02;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    pointer-events: none;
-}
-
-.manifesto-text {
-    max-width: 900px;
-    margin: 0 auto;
-    font-size: 1.8rem;
+.lyric-art {
     font-family: var(--font-body);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     line-height: 1.4;
+    text-align: center;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 40px;
 }
 
-.manifesto-content p {
-    margin-bottom: 20px;
-}
-
-.highlight {
-    color: var(--clinical-cyan);
-    font-family: var(--font-head);
-    font-weight: 800;
+.lyric-art .gold-accent {
+    color: var(--gold);
     display: block;
-    margin-bottom: 30px;
-    letter-spacing: -1px;
+    margin-top: 10px;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.05em;
+}
+
+.gold-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 50px auto;
+}
+
+.manifesto-story {
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.manifesto-story p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 0;
+    color: var(--text-dark-muted);
+    font-weight: 400;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   IDENTITY SECTION (HASTA DOSYASI)
+   IDENTITY SECTION (D1Z3 KİMDİR?) — DARK
    ═══════════════════════════════════════════════════════════════ */
 #identity {
-    padding: 150px 10%;
-    background: var(--void-black);
+    padding: 140px 10%;
+    background: var(--bg-primary);
+    position: relative;
+}
+
+#identity::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 10%, var(--gold-dim) 50%, transparent 90%);
 }
 
 .split-layout {
     display: flex;
-    align-items: center;
-    gap: 100px;
+    align-items: flex-start;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .identity-visual {
-    flex: 1;
+    flex: 0 0 380px;
 }
 
-.ghost-frame video {
+.ghost-frame {
+    position: relative;
+    border: 1px solid rgba(197, 160, 89, 0.15);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+}
+
+.ghost-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(10, 8, 6, 0.6) 100%);
+    pointer-events: none;
+}
+
+.ghost-frame video,
+.ghost-frame img {
     width: 100%;
-    opacity: 0.8;
-    border: 1px solid var(--clinical-cyan);
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.25) contrast(1.05) brightness(0.85);
 }
 
 .identity-bio {
@@ -837,167 +491,316 @@ nav {
 
 .identity-bio h2 {
     font-family: var(--font-head);
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 40px;
-    color: var(--sterile-white);
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--gold);
+    letter-spacing: 4px;
+}
+
+.identity-bio .bio-subtitle {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--sepia-light);
+    margin-bottom: 35px;
+    font-weight: 300;
 }
 
 .bio-content p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 25px;
-    color: rgba(255, 255, 255, 0.6);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 22px;
+    color: var(--text-muted);
+}
+
+.bio-content p strong {
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+.bio-content .bio-quote {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 300;
+    margin: 30px 0;
+    padding: 20px 0;
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
 }
 
 .final-line {
-    font-weight: 700;
-    color: var(--clinical-cyan) !important;
+    font-weight: 600;
+    color: var(--gold) !important;
     opacity: 1 !important;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    margin-top: 10px;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   DİSKOGRAFİ SECTION
+   DİSKOGRAFİ SECTION — WARM LIGHT BACKGROUND
    ═══════════════════════════════════════════════════════════════ */
 #diskografi {
-    padding: 150px 10%;
-    background: var(--bg-darker);
-}
-
-.diskografi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 60px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.diskografi-item {
-    text-align: center;
-}
-
-.diskografi-image {
+    padding: 140px 10%;
+    background: var(--parchment);
     position: relative;
-    margin-bottom: 25px;
 }
 
-.diskografi-image img {
+#diskografi::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 10%, var(--gold) 50%, transparent 90%);
+}
+
+.section-heading {
+    font-family: var(--font-head);
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 80px;
+    color: var(--text-dark);
+    letter-spacing: 10px;
+}
+
+/* Each song block */
+.diskografi-block {
+    max-width: 1000px;
+    margin: 0 auto 100px;
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.diskografi-block:last-child {
+    margin-bottom: 0;
+}
+
+.diskografi-block.featured {
+    position: relative;
+}
+
+/* Cover side */
+.diskografi-cover {
+    flex: 0 0 280px;
+    position: relative;
+}
+
+.diskografi-cover img {
     width: 100%;
-    max-width: 350px;
     display: block;
-    margin: 0 auto;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
     transition: var(--transition-smooth);
 }
 
-.diskografi-image:hover img {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 30px 60px rgba(0, 243, 255, 0.2);
+.diskografi-block:hover .diskografi-cover img {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 60px rgba(197, 160, 89, 0.15);
 }
 
 .diskografi-badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--clinical-cyan);
-    color: var(--void-black);
-    padding: 5px 15px;
+    top: 12px;
+    right: 12px;
+    background: var(--gold);
+    color: #fff;
+    padding: 4px 12px;
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 2px;
+    z-index: 2;
 }
 
-.diskografi-info h3 {
+/* Info side */
+.diskografi-details {
+    flex: 1;
+}
+
+.diskografi-details h3 {
     font-family: var(--font-head);
     font-size: 2rem;
-    margin-bottom: 10px;
-    color: var(--sterile-white);
+    margin-bottom: 6px;
+    color: var(--text-dark);
+    letter-spacing: 4px;
+    font-weight: 600;
 }
 
-.diskografi-info p {
+.diskografi-details .release-date {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.7rem;
+    color: var(--text-dark-muted);
     letter-spacing: 2px;
     margin-bottom: 20px;
+    display: block;
+}
+
+.diskografi-btn {
+    padding: 12px 35px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-family: var(--font-head);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+    transition: var(--transition-smooth);
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.diskografi-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gold);
+    transition: var(--transition-smooth);
+    z-index: -1;
+}
+
+.diskografi-btn:hover {
+    color: #fff;
+    border-color: var(--gold);
+}
+
+.diskografi-btn:hover::before {
+    left: 0;
+}
+
+/* YouTube embed per song */
+.diskografi-video {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid rgba(197, 160, 89, 0.12);
+}
+
+.diskografi-video .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #0A0806;
+}
+
+.diskografi-video .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Separator between songs */
+.diskografi-separator {
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.25), transparent);
 }
 
 /* ═══════════════════════════════════════════════════════════════
    FOOTER
    ═══════════════════════════════════════════════════════════════ */
 footer {
-    padding: 100px 10% 50px;
-    background: var(--void-black);
+    padding: 80px 10% 40px;
+    background: var(--bg-primary);
     text-align: center;
     position: relative;
 }
 
-/* 2px Cyan Gradient Line */
 footer::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            var(--clinical-cyan) 20%,
-            var(--poison-green) 50%,
-            var(--clinical-cyan) 80%,
-            transparent 100%);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim) 30%, var(--gold) 50%, var(--gold-dim) 70%, transparent);
 }
 
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin-bottom: 50px;
+    gap: 28px;
+    margin-bottom: 40px;
 }
 
 .social-icons a {
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 1.5rem;
+    color: rgba(240, 235, 224, 0.3);
+    font-size: 1.3rem;
     transition: var(--transition-smooth);
 }
 
 .social-icons a:hover {
-    color: var(--clinical-cyan);
-    transform: translateY(-5px);
+    color: var(--gold);
+    transform: translateY(-3px);
+}
+
+footer p {
+    font-size: 0.7rem;
+    color: rgba(240, 235, 224, 0.25);
+    letter-spacing: 2px;
+    font-family: var(--font-mono);
+}
+
+.footer-tagline {
+    font-family: var(--font-head);
+    font-style: italic;
+    font-size: 0.85rem !important;
+    color: var(--sepia) !important;
+    margin-top: 12px;
+    opacity: 0.5;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   AMBIENT AUDIO INDICATOR
+   AMBIENT INDICATOR
    ═══════════════════════════════════════════════════════════════ */
 .audio-indicator {
     position: fixed;
     bottom: 20px;
     right: 20px;
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--clinical-cyan);
-    opacity: 0.5;
+    font-size: 0.6rem;
+    color: var(--gold);
+    opacity: 0.3;
     z-index: 100;
+    letter-spacing: 2px;
 }
 
 .audio-indicator::before {
-    content: '♥';
+    content: '⏳';
     margin-right: 5px;
-    animation: heartbeat 2s infinite;
+    animation: hourglassRotate 4s ease-in-out infinite;
+    display: inline-block;
 }
 
-@keyframes heartbeat {
+@keyframes hourglassRotate {
 
     0%,
     100% {
+        transform: rotate(0deg);
         opacity: 0.3;
-        transform: scale(1);
     }
 
     50% {
-        opacity: 1;
-        transform: scale(1.1);
+        transform: rotate(180deg);
+        opacity: 0.8;
     }
 }
 
@@ -1006,7 +809,7 @@ footer::before {
    ═══════════════════════════════════════════════════════════════ */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(35px);
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1018,104 +821,15 @@ footer::before {
 /* ═══════════════════════════════════════════════════════════════
    MOBILE RESPONSIVE
    ═══════════════════════════════════════════════════════════════ */
-@media (max-width: 992px) {
-
-    /* Thumb Zone - DOZ AL butonu alt kısımda */
-    .hero-content.centered {
-        justify-content: flex-start;
-        padding-top: 20vh;
-    }
-
-    .btn-group {
-        position: fixed;
-        bottom: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 100;
-    }
-
-    .doz-btn {
-        padding: 20px 60px;
-        font-size: 1rem;
-    }
-
-    .vazgec-container,
-    .split-layout {
-        flex-direction: column;
-        gap: 50px;
-        text-align: center;
-    }
-
-    .vazgec-details {
-        border-left: none;
-        padding-left: 0;
-    }
-
-    .countdown-container {
-        gap: 20px;
-    }
-
-    .countdown-item span {
-        font-size: 1.8rem;
-    }
-
-    /* Scanlines reduced on mobile */
-    .hero-video-container::after {
-        opacity: 0.05;
-    }
-
-    .noise-overlay {
-        opacity: 0.03;
-    }
-
-    .modal-content {
-        padding: 40px 30px;
-        margin: 20px;
-    }
-}
-
 @media (max-width: 768px) {
-    #hero {
-        height: auto;
-        min-height: 100vh;
-        padding: 80px 0 120px;
-    }
-
-    #manifesto {
-        padding: 60px 10%;
-    }
-
-    #vazgec {
-        padding: 60px 10%;
-    }
-
-    .vazgec-title {
-        font-size: 3.5rem;
-    }
-
-    .section-title {
-        font-size: 4rem;
-    }
-
-    .klinik-title {
-        font-size: 4rem;
-    }
-}
-/* ═══════════════════════════════════════════════════════════════
-   MOBILE RESPONSIVENESS (V6.0 EMERGENCY FIX)
-   ═══════════════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
-    
-    /* GLOBAL */
     body {
         font-size: 16px;
     }
 
-    .container {
-        padding: 0 5%;
+    body::after {
+        opacity: 0.02;
     }
 
-    /* NAVIGATION */
     nav {
         padding: 15px 20px;
     }
@@ -1124,225 +838,132 @@ footer::before {
         font-size: 1.2rem;
     }
 
-    /* HERO SECTION */
-    .hero-content.centered {
-        padding: 0 20px;
-        width: 100%;
+    .nav-links {
+        display: none;
     }
 
-    .klinik-title {
-        font-size: 4rem !important; /* Force smaller size on mobile */
-        margin-bottom: 20px;
-        line-height: 0.9;
+    /* HERO */
+    #hero {
+        min-height: auto;
+        padding-top: 80px;
     }
 
-    .status-terminal {
-        font-size: 0.5rem;
-        margin-bottom: 20px;
+    .hero-content {
+        padding: 80px 5% 50px;
+    }
+
+    .hero-title {
+        font-size: 3.2rem;
+        letter-spacing: 8px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+
+    .hero-video-embed {
+        margin: 0 10px 35px;
+    }
+
+    .hero-video-embed::before {
+        display: none;
     }
 
     .btn-group {
         width: 100%;
-        gap: 15px;
-        flex-direction: column;
-        align-items: center;
+        padding: 0 20px;
     }
 
-    .doz-btn {
+    .cta-btn {
         width: 100%;
-        padding: 20px;
+        padding: 16px 20px;
         text-align: center;
-        font-size: 1rem;
     }
 
-    /* MANIFESTO & TEXT ART */
+    /* MANIFESTO */
     #manifesto {
-        padding: 80px 5% 100px 5%;
+        padding: 80px 6%;
     }
 
     .lyric-art {
-        font-size: 2.5rem; /* Drastically reduce from 5rem */
-        line-height: 1.1;
+        font-size: 1.8rem;
     }
 
-    .lyric-art .poison {
-        font-size: 2.8rem;
-        margin-top: 5px;
+    /* IDENTITY */
+    #identity {
+        padding: 80px 5%;
     }
 
-    .video-container {
-        margin: 40px 0;
-    }
-
-    .manifesto-content p.highlight {
-        font-size: 1.1rem !important;
-    }
-
-    /* IDENTITY SECTION */
     .split-layout {
         flex-direction: column;
         gap: 40px;
+        text-align: center;
     }
 
     .identity-visual {
-        min-height: 300px;
+        flex: none;
+        width: 260px;
+        margin: 0 auto;
     }
 
-    .identity-bio {
-        padding-left: 0;
-    }
-
-    .bio-content {
-        font-size: 1rem;
+    .identity-bio h2 {
+        font-size: 1.8rem;
     }
 
     /* DISKOGRAFI */
-    .diskografi-grid {
-        grid-template-columns: 1fr; /* Stack items vertically */
-        gap: 40px;
+    #diskografi {
+        padding: 80px 5%;
     }
 
-    .diskografi-item {
+    .diskografi-block {
         flex-direction: column;
+        gap: 25px;
+        align-items: center;
         text-align: center;
     }
 
-    .diskografi-image {
+    .diskografi-video .video-wrapper {
+        padding-bottom: 56.25%;
+    }
+
+    .diskografi-details {
         width: 100%;
-        max-width: 250px;
-        margin: 0 auto 20px auto;
     }
 
-    .diskografi-info {
-        padding-left: 0;
+    .diskografi-video {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 15px 0 0;
     }
 
-    .diskografi-info h3 {
+    .diskografi-cover {
+        flex: none;
+        width: 220px;
+    }
+
+    .section-heading {
+        font-size: 2rem;
+        letter-spacing: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+        padding: 50px 5% 30px;
+    }
+
+    .social-icons {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
         font-size: 2.5rem;
-        justify-content: center;
-    }
-    
-    .neon-btn {
-        width: 100%;
-        display: block;
-        margin-top: 15px;
-        text-align: center;
+        letter-spacing: 5px;
     }
 
-    /* MODAL */
-    .modal-content {
-        width: 90%;
-        padding: 40px 20px;
-    }
-
-    .modal-warning {
+    .lyric-art {
         font-size: 1.5rem;
     }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   V6.1 REFINED MOBILE FIXES (OVERRIDE)
-   ═══════════════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
-    #hero {
-        height: auto !important; /* Allow scroll if content is tall */
-        min-height: 100vh;
-        padding-top: 140px; /* Space for Navbar */
-        padding-bottom: 80px;
-        align-items: center; /* Keep centered horizontally */
-    }
-
-    .hero-content.centered {
-        padding: 0 5%;
-    }
-
-    .klinik-title {
-        font-size: 3.8rem !important;
-        line-height: 1;
-        margin: 30px 0 50px 0;
-    }
-
-    /* Fix Button Design */
-    .btn-group {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .doz-btn {
-        width: auto !important;
-        display: inline-block;
-        min-width: 250px; /* Consistent width but not edge-to-edge */
-        padding: 18px 30px;
-        font-size: 1rem;
-        letter-spacing: 2px;
-        background: rgba(0, 0, 0, 0.6); /* Readability against video */
-        backdrop-filter: blur(5px);
-    }
-    
-    /* Ensure no overlap with next section */
-    #hero::after {
-        display: none; /* Remove any absolute overlays that might block scroll */
-    }
-
-    /* Fix Manifesto Spacing */
-    #manifesto {
-        padding-top: 50px;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   V7.0 USER FEEDBACK REFINEMENTS
-   ═══════════════════════════════════════════════════════════════ */
-
-/* 1. Mobile Review: Sticky "Sabit" Button */
-@media (max-width: 768px) {
-    .doz-btn {
-        position: fixed !important;
-        bottom: 30px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        z-index: 9999 !important;
-        width: 85% !important;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.85) !important;
-        backdrop-filter: blur(12px);
-        border-color: var(--clinical-cyan);
-        box-shadow: 0 10px 40px rgba(0, 243, 255, 0.2);
-    }
-
-    /* Add padding to bottom of hero/body so button doesn't cover content */
-    #hero {
-        padding-bottom: 120px !important;
-    }
-}
-
-/* 2. Readability Improvement for Manifesto Highlight */
-.manifesto-content p.highlight {
-    font-family: var(--font-body) !important;
-    font-weight: 400 !important;
-    line-height: 2 !important; /* "Daha fazla satır" effect via spacing */
-    letter-spacing: 0.5px;
-    text-shadow: none !important; /* Remove heavy glow */
-    color: #e0e0e0 !important; /* Brighter, cleaner white */
-    max-width: 600px; /* Force more lines */
-    margin-left: auto;
-    margin-right: auto; 
-}
-
-/* 3. Identity Visual Aspect Ratio (4:5) */
-.identity-visual .ghost-frame {
-    aspect-ratio: 4/5 !important;
-    height: auto !important;
-    width: 100%;
-    max-width: 400px; /* Control max width */
-    margin: 0 auto;
-}
-
-.identity-visual video {
-    object-fit: cover !important;
-    width: 100% !important;
-    height: 100% !important;
 }
