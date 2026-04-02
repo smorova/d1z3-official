@@ -4,44 +4,40 @@
    ═══════════════════════════════════════════════════════════════ */
 
 /* ───────────────────────────────────────────────────────────────
-   FONTS — Cormorant Garamond (Phoenix American alternatifi)
+   FONTS — Cormorant Garamond, Inter, JetBrains Mono, Anton
    ─────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:ital,wght@0,300;0,400;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:ital,wght@0,300;0,400;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap');
 
 /* ───────────────────────────────────────────────────────────────
    CSS VARIABLES — KUM SAATİ PALETTE V2 (BRIGHTER)
    ─────────────────────────────────────────────────────────────── */
 :root {
-    /* PRIMARY — Antik Altın */
-    --gold: #C5A059;
-    --gold-bright: #D4AF61;
-    --gold-light: #E8D5A8;
-    --gold-glow: rgba(197, 160, 89, 0.35);
-    --gold-dim: rgba(197, 160, 89, 0.15);
+    /* PRIMARY — Monokrom / Minimal */
+    --accent: #B0C4DE;
+    --accent-dim: rgba(176, 196, 222, 0.15);
+    --accent-glow: rgba(176, 196, 222, 0.05);
 
-    /* SECONDARY — Sıcak Tonlar */
-    --sepia: #8B7355;
-    --sepia-light: #B8A088;
-    --warm-cream: #F5EDE0;
-    --warm-sand: #E8DCC8;
-    --parchment: #FAF6EF;
+    /* SECONDARY — Soğuk Tonlar */
+    --gray-dark: #1A222B;
+    --gray-mid: #3B4B5B;
+    --gray-light: #7E94A8;
 
-    /* BACKGROUNDS — Warmer, lighter */
-    --bg-primary: #0A0806;
-    --bg-section-warm: #0F0C08;
-    --bg-section-light: #F8F4EC;
-    --bg-card: #151210;
+    /* BACKGROUNDS — Karanlık Yağmurlu Atmosfer */
+    --bg-primary: #050B10;
+    --bg-card: #0A121A;
+    --bg-card-hover: #101B25;
 
     /* TEXT */
-    --text-light: #F0EBE0;
-    --text-muted: rgba(240, 235, 224, 0.55);
-    --text-dark: #2A2420;
-    --text-dark-muted: rgba(42, 36, 32, 0.6);
+    --text-light: #FFFFFF;
+    --text-muted: #808080;
+    --text-dark: #000000;
+    --text-dark-muted: #1A1A1A;
 
     /* TYPOGRAPHY */
     --font-head: 'Cormorant Garamond', serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --font-impact: 'Anton', sans-serif;
 
     /* TRANSITIONS */
     --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -122,7 +118,7 @@ nav {
     font-family: var(--font-head);
     font-weight: 700;
     font-size: 1.5rem;
-    color: var(--gold);
+    color: var(--accent);
     letter-spacing: 4px;
 }
 
@@ -144,11 +140,11 @@ nav {
 
 .nav-links a:hover {
     opacity: 1;
-    color: var(--gold);
+    color: var(--accent);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO SECTION — KUM SAATİ
+   HERO SECTION — KAYIP ATMOSPHERE
    ═══════════════════════════════════════════════════════════════ */
 #hero {
     min-height: 100vh;
@@ -158,63 +154,18 @@ nav {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--bg-primary);
+    background: url('../assets/images/kayip_bg.png') center/cover no-repeat;
+    background-color: var(--bg-primary);
 }
 
-/* Subtle warm radial glow */
+/* Dark overlay blending into rest of page */
 #hero::before {
     content: '';
     position: absolute;
-    width: 800px;
-    height: 800px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(197, 160, 89, 0.06) 0%, transparent 70%);
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(5,11,16,0.3) 0%, rgba(5,11,16,1) 100%);
     pointer-events: none;
     z-index: 1;
-}
-
-/* Sand Particles */
-.sand-particles {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.sand-particle {
-    position: absolute;
-    background: var(--gold);
-    border-radius: 50%;
-    opacity: 0;
-    animation: sandFall linear infinite;
-    box-shadow: 0 0 4px rgba(197, 160, 89, 0.4);
-}
-
-@keyframes sandFall {
-    0% {
-        opacity: 0;
-        transform: translateY(-30px) translateX(0) rotate(0deg);
-    }
-
-    8% {
-        opacity: 0.7;
-    }
-
-    50% {
-        opacity: 0.5;
-    }
-
-    92% {
-        opacity: 0.2;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(100vh) translateX(40px) rotate(360deg);
-    }
 }
 
 /* Hero Content */
@@ -229,78 +180,117 @@ nav {
     padding: 100px 5% 60px;
 }
 
-/* Main Title */
-.hero-title {
-    font-family: var(--font-head);
-    font-size: clamp(4rem, 11vw, 9rem);
-    font-weight: 300;
-    color: var(--gold-light);
-    line-height: 0.9;
-    margin-bottom: 30px;
+/* Tagline — Glitch / Anton Font */
+.hero-tagline {
+    font-family: var(--font-impact);
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1.1;
     text-transform: uppercase;
-    letter-spacing: 15px;
+    letter-spacing: 5px;
     position: relative;
-    text-shadow: 0 0 80px var(--gold-dim);
-}
-
-.hero-title span {
-    display: block;
-    color: var(--gold);
-    font-weight: 700;
-    font-size: 1.1em;
-}
-
-/* Subtle glitch on hover */
-.hero-title:hover {
-    animation: analogGlitch 0.4s steps(2);
-}
-
-@keyframes analogGlitch {
-    0% {
-        text-shadow: 3px 0 var(--gold), -3px 0 var(--sepia);
-    }
-
-    50% {
-        text-shadow: -2px 2px var(--gold), 2px -2px var(--sepia);
-    }
-
-    100% {
-        text-shadow: 0 0 80px var(--gold-dim);
-    }
-}
-
-.hero-subtitle {
-    font-family: var(--font-body);
-    font-style: italic;
-    font-size: clamp(1rem, 2.2vw, 1.2rem);
-    color: var(--sepia-light);
-    margin-bottom: 50px;
-    letter-spacing: 0.5px;
-    line-height: 1.6;
-    max-width: 650px;
-    font-weight: 300;
-}
-
-/* Video Embed in Hero */
-.hero-video-embed {
-    width: 100%;
-    max-width: 850px;
-    margin: 0 auto 45px;
+    text-shadow: 0 0 20px rgba(176, 196, 222, 0.4);
     position: relative;
-    border: 1px solid var(--gold-dim);
-    box-shadow: 0 0 60px rgba(197, 160, 89, 0.08), 0 40px 80px rgba(0, 0, 0, 0.5);
+    display: inline-block;
 }
 
-.hero-video-embed::before {
-    content: '▶ D1Z3 — KUM SAATİ (Official Video)';
+.hero-tagline::before,
+.hero-tagline::after {
+    content: '"Sentetik Dünyada\AOrganik Bir Hata"';
+    white-space: pre-wrap;
     position: absolute;
-    top: -28px;
+    top: 0;
     left: 0;
-    font-family: var(--font-mono);
-    font-size: 0.55rem;
-    color: var(--gold);
-    letter-spacing: 3px;
-    opacity: 0.4;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.hero-tagline::before {
+    left: 4px;
+    text-shadow: -2px 0 red;
+    clip: rect(44px, 1500px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.hero-tagline::after {
+    left: -4px;
+    text-shadow: -2px 0 cyan;
+    clip: rect(44px, 1500px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(69px, 9999px, 86px, 0); transform: skew(0.5deg); }
+    5% { clip: rect(13px, 9999px, 85px, 0); transform: skew(0.1deg); }
+    10% { clip: rect(40px, 9999px, 2px, 0); transform: skew(0.8deg); }
+    15% { clip: rect(51px, 9999px, 12px, 0); transform: skew(0.3deg); }
+    20% { clip: rect(80px, 9999px, 78px, 0); transform: skew(0.1deg); }
+    25% { clip: rect(43px, 9999px, 94px, 0); transform: skew(0.9deg); }
+    30% { clip: rect(93px, 9999px, 80px, 0); transform: skew(0.2deg); }
+    35% { clip: rect(2px, 9999px, 66px, 0); transform: skew(0.8deg); }
+    40% { clip: rect(31px, 9999px, 57px, 0); transform: skew(0.4deg); }
+    45% { clip: rect(6px, 9999px, 21px, 0); transform: skew(0.7deg); }
+    50% { clip: rect(9px, 9999px, 99px, 0); transform: skew(0.1deg); }
+    100% { clip: rect(15px, 9999px, 33px, 0); transform: skew(0.5deg); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(38px, 9999px, 17px, 0); transform: skew(0.2deg); }
+    5% { clip: rect(91px, 9999px, 72px, 0); transform: skew(0.8deg); }
+    10% { clip: rect(16px, 9999px, 59px, 0); transform: skew(0.1deg); }
+    15% { clip: rect(40px, 9999px, 88px, 0); transform: skew(0.7deg); }
+    20% { clip: rect(94px, 9999px, 19px, 0); transform: skew(0.3deg); }
+    25% { clip: rect(56px, 9999px, 3px, 0); transform: skew(0.2deg); }
+    30% { clip: rect(21px, 9999px, 83px, 0); transform: skew(0.9deg); }
+    35% { clip: rect(72px, 9999px, 95px, 0); transform: skew(0.1deg); }
+    40% { clip: rect(23px, 9999px, 45px, 0); transform: skew(0.5deg); }
+    45% { clip: rect(81px, 9999px, 68px, 0); transform: skew(0.4deg); }
+    50% { clip: rect(6px, 9999px, 22px, 0); transform: skew(0.7deg); }
+    100% { clip: rect(55px, 9999px, 15px, 0); transform: skew(0.9deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VİDEOLAR SECTION (VIDEO GRID)
+   ═══════════════════════════════════════════════════════════════ */
+#videolar {
+    padding: 140px 10%;
+    background: var(--bg-card);
+    text-align: center;
+    position: relative;
+}
+
+#videolar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 10%, var(--accent-dim) 50%, transparent 90%);
+}
+
+.video-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.video-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--accent-dim);
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+    border-color: var(--accent);
 }
 
 .video-wrapper {
@@ -308,7 +298,7 @@ nav {
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
-    background: #080604;
+    background: #000;
 }
 
 .video-wrapper iframe {
@@ -320,115 +310,16 @@ nav {
     border: none;
 }
 
-/* CTA Button */
-.btn-group {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    margin-top: 5px;
+.video-info {
+    padding: 20px;
+    text-align: left;
 }
 
-.cta-btn {
-    padding: 16px 55px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    text-decoration: none;
+.video-info h3 {
     font-family: var(--font-head);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 0.9rem;
-    transition: var(--transition-smooth);
-    background: transparent;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.cta-btn::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 0;
-    background: var(--gold);
-    transition: width 0.6s ease;
-    z-index: -1;
-}
-
-.cta-btn:hover {
-    color: var(--bg-primary);
-    box-shadow: 0 0 40px var(--gold-glow);
-}
-
-.cta-btn:hover::before {
-    width: 100%;
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   MANIFESTO SECTION — LIGHT BACKGROUND
-   ═══════════════════════════════════════════════════════════════ */
-#manifesto {
-    padding: 160px 10% 140px;
-    background: var(--bg-section-light);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Gold accent line at top */
-#manifesto::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 10%, var(--gold) 50%, transparent 90%);
-}
-
-.lyric-art {
-    font-family: var(--font-body);
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    line-height: 1.4;
-    text-align: center;
-    color: var(--text-dark);
-    letter-spacing: 1px;
-    font-weight: 300;
-    font-style: italic;
-    margin-bottom: 40px;
-}
-
-.lyric-art .gold-accent {
-    color: var(--gold);
-    display: block;
-    margin-top: 10px;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 1.05em;
-}
-
-.gold-divider {
-    width: 80px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 50px auto;
-}
-
-.manifesto-story {
-    max-width: 650px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.manifesto-story p {
-    font-family: var(--font-body);
-    font-size: 1.05rem;
-    line-height: 1.9;
-    margin-bottom: 0;
-    color: var(--text-dark-muted);
-    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--text-light);
+    letter-spacing: 2px;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -436,7 +327,7 @@ nav {
    ═══════════════════════════════════════════════════════════════ */
 #identity {
     padding: 140px 10%;
-    background: var(--bg-primary);
+    background: var(--bg-card);
     position: relative;
 }
 
@@ -447,7 +338,7 @@ nav {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent 10%, var(--gold-dim) 50%, transparent 90%);
+    background: linear-gradient(90deg, transparent 10%, var(--accent-dim) 50%, transparent 90%);
 }
 
 .split-layout {
@@ -464,17 +355,9 @@ nav {
 
 .ghost-frame {
     position: relative;
-    border: 1px solid rgba(197, 160, 89, 0.15);
+    border: 1px solid var(--accent-dim);
     overflow: hidden;
     aspect-ratio: 4/5;
-}
-
-.ghost-frame::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(10, 8, 6, 0.6) 100%);
-    pointer-events: none;
 }
 
 .ghost-frame video,
@@ -482,7 +365,7 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: sepia(0.25) contrast(1.05) brightness(0.85);
+    filter: grayscale(100%) contrast(1.1) brightness(0.9);
 }
 
 .identity-bio {
@@ -494,15 +377,14 @@ nav {
     font-size: 2.2rem;
     font-weight: 600;
     margin-bottom: 12px;
-    color: var(--gold);
+    color: var(--accent);
     letter-spacing: 4px;
 }
 
 .identity-bio .bio-subtitle {
     font-family: var(--font-body);
-    font-style: italic;
     font-size: 1.05rem;
-    color: var(--sepia-light);
+    color: var(--text-muted);
     margin-bottom: 35px;
     font-weight: 300;
 }
@@ -516,7 +398,7 @@ nav {
 }
 
 .bio-content p strong {
-    color: var(--gold-light);
+    color: var(--accent);
     font-weight: 600;
 }
 
@@ -524,17 +406,17 @@ nav {
     font-family: var(--font-body);
     font-size: 1.1rem;
     font-style: italic;
-    color: var(--gold);
+    color: var(--text-light);
     font-weight: 300;
     margin: 30px 0;
     padding: 20px 0;
-    border-top: 1px solid var(--gold-dim);
-    border-bottom: 1px solid var(--gold-dim);
+    border-top: 1px solid var(--accent-dim);
+    border-bottom: 1px solid var(--accent-dim);
 }
 
 .final-line {
     font-weight: 600;
-    color: var(--gold) !important;
+    color: var(--accent) !important;
     opacity: 1 !important;
     font-family: var(--font-mono);
     font-size: 0.85rem;
@@ -543,22 +425,22 @@ nav {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   DİSKOGRAFİ SECTION — WARM LIGHT BACKGROUND
+   MÜZİK SECTION (CARD BASED)
    ═══════════════════════════════════════════════════════════════ */
-#diskografi {
+#muzik {
     padding: 140px 10%;
-    background: var(--parchment);
+    background: var(--bg-primary);
     position: relative;
 }
 
-#diskografi::before {
+#muzik::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent 10%, var(--gold) 50%, transparent 90%);
+    background: linear-gradient(90deg, transparent 10%, var(--accent-dim) 50%, transparent 90%);
 }
 
 .section-heading {
@@ -567,151 +449,103 @@ nav {
     font-weight: 300;
     text-align: center;
     margin-bottom: 80px;
-    color: var(--text-dark);
+    color: var(--text-light);
     letter-spacing: 10px;
 }
 
-/* Each song block */
-.diskografi-block {
-    max-width: 1000px;
-    margin: 0 auto 100px;
+.music-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.music-card {
+    background: var(--bg-card);
+    border: 1px solid var(--accent-dim);
+    transition: var(--transition-smooth);
     display: flex;
-    gap: 50px;
-    align-items: flex-start;
+    flex-direction: column;
 }
 
-.diskografi-block:last-child {
-    margin-bottom: 0;
+.music-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
 }
 
-.diskografi-block.featured {
-    position: relative;
-}
-
-/* Cover side */
-.diskografi-cover {
-    flex: 0 0 280px;
-    position: relative;
-}
-
-.diskografi-cover img {
+.card-cover {
     width: 100%;
-    display: block;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: var(--transition-smooth);
 }
 
-.diskografi-block:hover .diskografi-cover img {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 60px rgba(197, 160, 89, 0.15);
+.music-card:hover .card-cover img {
+    transform: scale(1.05);
 }
 
-.diskografi-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: var(--gold);
-    color: #fff;
-    padding: 4px 12px;
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    z-index: 2;
+.card-info {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-/* Info side */
-.diskografi-details {
-    flex: 1;
-}
-
-.diskografi-details h3 {
+.card-info h3 {
     font-family: var(--font-head);
     font-size: 2rem;
-    margin-bottom: 6px;
-    color: var(--text-dark);
-    letter-spacing: 4px;
-    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-light);
+    letter-spacing: 2px;
 }
 
-.diskografi-details .release-date {
+.card-date {
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    color: var(--text-dark-muted);
+    color: var(--text-muted);
     letter-spacing: 2px;
     margin-bottom: 20px;
-    display: block;
 }
 
-.diskografi-btn {
-    padding: 12px 35px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
+.card-spirit {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--gray-light);
+    font-style: italic;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.card-btn {
+    align-self: flex-start;
+    padding: 12px 30px;
+    border: 1px solid var(--accent-dim);
+    color: var(--text-light);
     text-decoration: none;
     font-family: var(--font-head);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     transition: var(--transition-smooth);
     background: transparent;
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    margin-bottom: 25px;
 }
 
-.diskografi-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--gold);
-    transition: var(--transition-smooth);
-    z-index: -1;
-}
-
-.diskografi-btn:hover {
-    color: #fff;
-    border-color: var(--gold);
-}
-
-.diskografi-btn:hover::before {
-    left: 0;
-}
-
-/* YouTube embed per song */
-.diskografi-video {
-    width: 100%;
-    margin-top: 5px;
-    border: 1px solid rgba(197, 160, 89, 0.12);
-}
-
-.diskografi-video .video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    background: #0A0806;
-}
-
-.diskografi-video .video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-/* Separator between songs */
-.diskografi-separator {
-    max-width: 1000px;
-    margin: 0 auto 60px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.25), transparent);
+.card-btn:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-color: var(--accent);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -719,7 +553,7 @@ nav {
    ═══════════════════════════════════════════════════════════════ */
 footer {
     padding: 80px 10% 40px;
-    background: var(--bg-primary);
+    background: var(--bg-card);
     text-align: center;
     position: relative;
 }
@@ -731,7 +565,7 @@ footer::before {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-dim) 30%, var(--gold) 50%, var(--gold-dim) 70%, transparent);
+    background: linear-gradient(90deg, transparent, var(--accent-dim) 30%, var(--accent) 50%, var(--accent-dim) 70%, transparent);
 }
 
 .social-icons {
@@ -742,28 +576,27 @@ footer::before {
 }
 
 .social-icons a {
-    color: rgba(240, 235, 224, 0.3);
+    color: var(--text-muted);
     font-size: 1.3rem;
     transition: var(--transition-smooth);
 }
 
 .social-icons a:hover {
-    color: var(--gold);
+    color: var(--accent);
     transform: translateY(-3px);
 }
 
 footer p {
     font-size: 0.7rem;
-    color: rgba(240, 235, 224, 0.25);
+    color: var(--gray-mid);
     letter-spacing: 2px;
     font-family: var(--font-mono);
 }
 
 .footer-tagline {
-    font-family: var(--font-head);
-    font-style: italic;
+    font-family: var(--font-mono);
     font-size: 0.85rem !important;
-    color: var(--sepia) !important;
+    color: var(--gray-light) !important;
     margin-top: 12px;
     opacity: 0.5;
 }
