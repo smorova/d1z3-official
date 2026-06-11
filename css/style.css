@@ -16,6 +16,14 @@
     font-style: normal;
 }
 
+/* Vintage Modern font - User should upload the font file to assets/fonts/ */
+@font-face {
+    font-family: 'VintageModern';
+    src: url('../assets/fonts/VintageModern.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 /* ───────────────────────────────────────────────────────────────
    CSS VARIABLES — KUM SAATİ PALETTE V2 (BRIGHTER)
@@ -163,7 +171,7 @@ nav {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: url('../assets/images/D1Z3_Hazan_Hero.png') center/cover no-repeat;
+    background: url('../assets/images/YARIM_ARKAPLAN.png') center/cover no-repeat;
     background-color: var(--bg-primary);
 }
 
@@ -191,7 +199,7 @@ nav {
 
 /* Tagline — Glitch / Anton Font */
 .hero-tagline {
-    font-family: 'ADayWithoutSun', var(--font-impact);
+    font-family: 'VintageModern', 'ADayWithoutSun', var(--font-impact);
     font-size: clamp(3rem, 7vw, 6.5rem);
     font-weight: 400;
     color: #FFFFFF;
@@ -215,7 +223,7 @@ nav {
 
 .hero-tagline::before,
 .hero-tagline::after {
-    content: 'HAZAN';
+    content: attr(data-text);
     white-space: pre-wrap;
     position: absolute;
     top: 0;
