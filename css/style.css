@@ -4,24 +4,25 @@
    ═══════════════════════════════════════════════════════════════ */
 
 /* ───────────────────────────────────────────────────────────────
-   FONTS — Cormorant Garamond, Inter, JetBrains Mono, Anton
+   FONTS — Loaded via <link> in HTML. Local @font-face below.
    ─────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:ital,wght@0,300;0,400;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap');
 
-/* A Day Without Sun font - User should upload the font file to assets/fonts/ */
+/* A Day Without Sun font */
 @font-face {
     font-family: 'ADayWithoutSun';
     src: url('../assets/fonts/ADayWithoutSun-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
-/* Vintage Modern font - User should upload the font file to assets/fonts/ */
+/* Vintage Modern font */
 @font-face {
     font-family: 'VintageModern';
     src: url('../assets/fonts/VintageModern.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 
@@ -171,7 +172,7 @@ nav {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: url('../assets/images/YARIM_ARKAPLAN.png') center/cover no-repeat;
+    background: url('../assets/images/YARIM_ARKAPLAN.webp') center/cover no-repeat;
     background-color: var(--bg-primary);
 }
 
@@ -826,4 +827,40 @@ footer p {
     .lyric-art {
         font-size: 1.5rem;
     }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LAZY VIDEO FACADE — Performance optimization
+   Videos load only when user clicks play
+   ═══════════════════════════════════════════════════════════════ */
+.lazy-video {
+    cursor: pointer;
+    position: relative;
+    background: var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-play-btn {
+    position: absolute;
+    z-index: 2;
+    width: 68px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lazy-video:hover .video-play-btn {
+    background: rgba(255, 0, 0, 0.85);
+    border-color: rgba(255, 0, 0, 0.9);
+    transform: scale(1.1);
 }

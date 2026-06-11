@@ -2,28 +2,26 @@
 <html lang="tr">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM8BH1QETJ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-GM8BH1QETJ');
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>D1Z3 — HAZAN</title>
+    <title>D1Z3 — YARIM</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
-    <!-- Fonts -->
+    <!-- Preconnect hints for external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://www.youtube-nocookie.com">
+
+    <!-- Preload hero background -->
+    <link rel="preload" as="image" type="image/webp" href="assets/images/YARIM_ARKAPLAN.webp">
+
+    <!-- Fonts (display=swap prevents render-blocking) -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:ital,wght@0,300;0,400;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap"
         rel="stylesheet">
 
     <!-- Font Awesome -->
@@ -34,13 +32,22 @@
 
     <!-- Meta Tags -->
     <meta name="description"
-        content="D1Z3 — HAZAN | Çatlamış asfaltların ve tükenmiş umutların ağıtı. Yeni single şimdi yayında.">
-    <meta property="og:title" content="D1Z3 — HAZAN">
+        content="D1Z3 — YARIM | Sistemin dışına itilmişlerin, dehlizlerde sürgün yiyenlerin ve eksik kalan hayallerin zihinsel yıkımı.">
+    <meta property="og:title" content="D1Z3 — YARIM">
     <meta property="og:description"
-        content="Her ömür kendi kader örgüsünü yaşar. Bizim de payımıza düşen; bu sessiz bekleyiş ve kabullenişmiş.">
+        content="Sistemin dışına itilmişlerin, dehlizlerde sürgün yiyenlerin ve eksik kalan hayallerin zihinsel yıkımı.">
     <meta property="og:type" content="music.musician">
-    <meta property="og:image" content="assets/images/D1Z3_Hazan_Cover.jpeg">
-    <meta name="theme-color" content="#C5A059">
+    <meta property="og:image" content="assets/images/YARIMCOVER.webp">
+    <meta name="theme-color" content="#1A0A2E">
+
+    <!-- Google Analytics (deferred to not block rendering) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM8BH1QETJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-GM8BH1QETJ');
+    </script>
 </head>
 
 <body>
@@ -50,7 +57,7 @@
          ═══════════════════════════════════════════════════════════════ -->
     <nav>
         <div class="logo">
-            <img src="assets/images/logo.png" alt="D1Z3 Logo" style="height: 40px; filter: grayscale(100%) brightness(1.2);">
+            <img src="assets/images/logo.webp" alt="D1Z3 Logo" loading="lazy" decoding="async" style="height: 40px; filter: grayscale(100%) brightness(1.2);">
         </div>
         <div class="nav-links">
             <a href="#muzik">Müzik</a>
@@ -81,20 +88,20 @@
                 <!-- YARIM -->
                 <div class="music-card">
                     <div class="card-cover">
-                        <img src="assets/images/YARIMCOVER.png" alt="Yarım Cover">
+                        <img src="assets/images/YARIMCOVER.webp" alt="Yarım Cover" loading="lazy" decoding="async">
                     </div>
                     <div class="card-info">
                         <h3>Yarım</h3>
                         <span class="card-date">11 HAZİRAN 2026</span>
                         <p class="card-spirit">"Sistemin dışına itilmişlerin, dehlizlerde sürgün yiyenlerin ve eksik kalan hayallerin zihinsel yıkımı."</p>
-                        <a href="https://distrokid.com/hyperfollow/d1z3/yarim" target="_blank" class="card-btn">DİNLE</a>
+                        <a href="https://distrokid.com/hyperfollow/d1z3" target="_blank" class="card-btn">DİNLE</a>
                     </div>
                 </div>
 
                 <!-- HAZAN -->
                 <div class="music-card">
                     <div class="card-cover">
-                        <img src="assets/images/D1Z3_Hazan_Cover.jpeg" alt="Hazan Cover">
+                        <img src="assets/images/D1Z3_Hazan_Cover.webp" alt="Hazan Cover" loading="lazy" decoding="async">
                     </div>
                     <div class="card-info">
                         <h3>Hazan</h3>
@@ -107,7 +114,7 @@
                 <!-- KAYIP -->
                 <div class="music-card">
                     <div class="card-cover">
-                        <img src="assets/images/D1Z3_Kayip.png" alt="Kayıp Cover">
+                        <img src="assets/images/D1Z3_Kayip.webp" alt="Kayıp Cover" loading="lazy" decoding="async">
                     </div>
                     <div class="card-info">
                         <h3>Kayıp</h3>
@@ -120,7 +127,7 @@
                 <!-- KUM SAATİ -->
                 <div class="music-card">
                     <div class="card-cover">
-                        <img src="assets/images/D1Z3_KumSaati.jpg" alt="Kum Saati Cover">
+                        <img src="assets/images/D1Z3_KumSaati.webp" alt="Kum Saati Cover" loading="lazy" decoding="async">
                     </div>
                     <div class="card-info">
                         <h3>Kum Saati</h3>
@@ -133,7 +140,7 @@
                 <!-- İLAÇ -->
                 <div class="music-card">
                     <div class="card-cover">
-                        <img src="assets/images/D1Z3_Ilac.png" alt="İlaç Cover">
+                        <img src="assets/images/D1Z3_Ilac.webp" alt="İlaç Cover" loading="lazy" decoding="async">
                     </div>
                     <div class="card-info">
                         <h3>İlaç</h3>
@@ -146,7 +153,7 @@
                 <!-- VAZGEÇ -->
                 <div class="music-card">
                     <div class="card-cover">
-                        <img src="assets/images/D1Z3_Cover.png" alt="Vazgeç Cover">
+                        <img src="assets/images/D1Z3_Cover.webp" alt="Vazgeç Cover" loading="lazy" decoding="async">
                     </div>
                     <div class="card-info">
                         <h3>Vazgeç</h3>
@@ -168,8 +175,8 @@
             <div class="video-cards-grid">
                 <!-- YARIM VIDEO -->
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube-nocookie.com/embed/mGu5yn6LW1M?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <div class="video-wrapper lazy-video" data-src="https://www.youtube-nocookie.com/embed/mGu5yn6LW1M?rel=0" data-title="Yarım">
+                        <button class="video-play-btn" aria-label="Yarım videosunu oynat">▶</button>
                     </div>
                     <div class="video-info">
                         <h3>Yarım</h3>
@@ -178,8 +185,8 @@
 
                 <!-- HAZAN VIDEO -->
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube-nocookie.com/embed/5hCWFLhn1MY?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <div class="video-wrapper lazy-video" data-src="https://www.youtube-nocookie.com/embed/5hCWFLhn1MY?rel=0" data-title="Hazan">
+                        <button class="video-play-btn" aria-label="Hazan videosunu oynat">▶</button>
                     </div>
                     <div class="video-info">
                         <h3>Hazan</h3>
@@ -187,8 +194,8 @@
                 </div>
                 <!-- KAYIP VIDEO -->
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube-nocookie.com/embed/P_kPOwemFM4?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <div class="video-wrapper lazy-video" data-src="https://www.youtube-nocookie.com/embed/P_kPOwemFM4?rel=0" data-title="Kayıp">
+                        <button class="video-play-btn" aria-label="Kayıp videosunu oynat">▶</button>
                     </div>
                     <div class="video-info">
                         <h3>Kayıp</h3>
@@ -196,8 +203,8 @@
                 </div>
                 <!-- KUM SAATİ VIDEO -->
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube-nocookie.com/embed/NijR4tKkC_U?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <div class="video-wrapper lazy-video" data-src="https://www.youtube-nocookie.com/embed/NijR4tKkC_U?rel=0" data-title="Kum Saati">
+                        <button class="video-play-btn" aria-label="Kum Saati videosunu oynat">▶</button>
                     </div>
                     <div class="video-info">
                         <h3>Kum Saati</h3>
@@ -205,8 +212,8 @@
                 </div>
                 <!-- İLAÇ VIDEO -->
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube-nocookie.com/embed/AkONVItzyT8?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <div class="video-wrapper lazy-video" data-src="https://www.youtube-nocookie.com/embed/AkONVItzyT8?rel=0" data-title="İlaç">
+                        <button class="video-play-btn" aria-label="İlaç videosunu oynat">▶</button>
                     </div>
                     <div class="video-info">
                         <h3>İlaç</h3>
@@ -214,8 +221,8 @@
                 </div>
                 <!-- VAZGEÇ VIDEO -->
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube-nocookie.com/embed/0yFA13LARWo?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <div class="video-wrapper lazy-video" data-src="https://www.youtube-nocookie.com/embed/0yFA13LARWo?rel=0" data-title="Vazgeç">
+                        <button class="video-play-btn" aria-label="Vazgeç videosunu oynat">▶</button>
                     </div>
                     <div class="video-info">
                         <h3>Vazgeç</h3>
@@ -233,7 +240,7 @@
             <!-- Sol: Visual Identity -->
             <div class="identity-visual">
                 <div class="ghost-frame">
-                    <video autoplay muted loop playsinline>
+                    <video autoplay muted loop playsinline preload="none">
                         <source src="assets/video/identity_grok.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -248,7 +255,7 @@
                     <p><strong>D1Z3 (Okunuş: "Dize")</strong></p>
                     <p class="bio-quote">"Ben size kusursuz bir ses değil, sansürsüz bir haykırış vadediyorum."</p>
                     <p>D1Z3; kusursuzluğu ve yapay mutluluğu dayatan dünya düzenine bir "hata" (glitch) olarak doğan; yıllardır yutkunuşların, yarım kalmış vedaların ve söylenmemiş sözlerin dijital bedende vücut bulmuş halidir.</p>
-                    <p>Bu proje, ismindeki şiirsel "Dize" ve yazılımdaki soğuk "Dizi" (String) ikiliğinden beslenir. Teknoloji ile insan ruhunun, kodlar ile gözyaşının çarpıştığı yerdir. Pahalı stüdyoların sahte parıltısından uzakta; yapay zeka teknolojisinin, kısıtlı imkanların ve saf, işlenmemiş duyguların birleşimiyle inşa edilen bu dünya; bir algoritmanın soğukluğunu değil, insan olmanın getirdiği hataları, nefesleri ve o karmaşık sıcaklığı taşır.</p>
+                    <p>Bu proje, ismindeki şiirsel "Dize" ve yazılımdaki soğuk "Dizi" ikiliğinden beslenir. Teknoloji ile insan ruhunun, kodlar ile gözyaşının çarpıştığı yerdir. Pahalı stüdyoların sahte parıltısından uzakta; teknolojinin, kısıtlı imkanların ve saf, işlenmemiş duyguların birleşimiyle inşa edilen bu dünya; bir algoritmanın soğukluğunu değil, insan olmanın getirdiği hataları, nefesleri ve o karmaşık sıcaklığı taşır.</p>
                     <p>Yolculuk "Vazgeç" ile başladı. "İlaç" ile zehir ve şifa arasındaki o ince çizgiye yürüdü. "Kum Saati" ile zamanın ve yasın en karanlık koridorlarına girdi. "Kayıp" ile uçurumun kenarındaki arafta yankılandı. "Hazan" ile çatlamış asfaltların, tükenmiş umutların ve kaderi kabullenişin o sararmış ağıtını yaktı.</p>
                     <p>Ve şimdi, "Yarım" ile o kırık aynaların içinde binlerce parçaya bölünüyor; sistemin dışına itilmişlerin, dehlizlerde sürgün yiyenlerin ve eksik kalan hayallerin zihinsel yıkımını haykırıyor.</p>
                     <p>Melankolinin tonu değişebilir, ancak ruhu asla değişmez. Bu ses ne bir türe sığar ne de kalıba. Bazen bir çığlık, bazen bir fısıltı, bazen de sadece bir nabız. Ama her zaman gerçek.</p>

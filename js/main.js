@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTabTitleChange();
     initRevealAnimations();
     initSmoothScroll();
+    initLazyVideos();
 });
 
 // ═══════════════════════════════════════════════════════════════
@@ -64,6 +65,35 @@ function initRevealAnimations() {
     window.addEventListener('scroll', checkReveal);
     // Check immediately in case elements are already in viewport
     checkReveal();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LAZY VIDEO LOADING (YouTube Facade Pattern)
+// Loads iframe only when user clicks — saves ~2MB per video
+// ═══════════════════════════════════════════════════════════════
+function initLazyVideos() {
+    document.querySelectorAll('.lazy-video').forEach(wrapper => {
+        wrapper.addEventListener('click', function() {
+            const src = this.dataset.src;
+            if (!src) return;
+
+            const iframe = document.createElement('iframe');
+            iframe.src = src;
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.position = 'absolute';
+            iframe.style.top = '0';
+            iframe.style.left = '0';
+
+            this.innerHTML = '';
+            this.appendChild(iframe);
+            this.classList.remove('lazy-video');
+        });
+    });
 }
 
 // ═══════════════════════════════════════════════════════════════
